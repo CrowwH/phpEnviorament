@@ -1,0 +1,338 @@
+:root {
+    --color-red: #c50303;
+    --color-red-dark: hsl(0, 94%, 28%);
+    --color-red-light: hsl(0, 86%, 51%);
+    --color-black: hsl(0, 28%, 9%);
+    --color-black-light: hsl(0, 0%, 18%);
+    --color-black-light-text: hsl(0, 0%, 27%);
+    --two-col-layout: 2;
+    --four-col-layout: 4;
+    --three-col-layout: 3;
+    --total-stack-size: 10;
+}
+@media only screen and (max-width: 56.25em) {
+    :root {
+        --two-col-layout: 1;
+        --four-col-layout: 1;
+        --three-col-layout: 1;
+}
+}
+@media only screen and (max-width: 59em) {
+    :root {
+        --two-col-layout: 1;
+        --four-col-layout: 1;
+        --three-col-layout: 1;
+    }
+}
+@media only screen and (max-width: 40em) {
+    body .headerra .headerren-nav .nav-hamburger {
+        display: block;
+    }
+}
+@media only screen and (max-width: 40em) {
+        body .headerra .headerren-nav .logo {
+        font-size: 2.5rem;
+    }
+}
+@media only screen and (max-width: 40em) {
+    body .headerra .headerren-nav .nav-ikon {
+        width: 40px;
+        height: 40px;
+    }
+}
+@media only screen and (max-width: 50em) {
+    body .headerra ul{
+        display: none;
+    }
+}
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+h1 {
+    font-size: 3.5rem;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+hr {
+    border: 0;
+    margin: 0;
+    width: 100%;
+    height: 2px;
+    background: rgb(96, 96, 96);
+    margin-bottom: 10px;
+}
+header {
+    background-color: rgb(80, 80, 80) !important;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+.kontainerra {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.headerren-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-content {
+    display: flex;
+    align-items: center;
+}
+.headerren-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.headerren-nav ul li {
+    margin-right: 20px;
+}
+
+.headerren-nav ul li:last-child {
+    margin-right: 0;
+}
+
+.headerren-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+/* Get rid of all default margins/paddings. Set typeface */
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    background-image: linear-gradient(rgba(58, 56, 56, 0.5), rgba(58, 56, 56, 0.5)),url(img/jiu-jitsu.jpg);
+}
+body button {
+    padding: 8px 16px;
+    font-style: italic;
+    text-transform: uppercase;
+    background-color: var(--color-red);
+    border: 2px solid var(--color-red);
+    font-weight: 600;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    transition: all 0.2s;
+}
+body .kontainerra{
+    max-width: 1440px;
+    padding: 0 1.4rem;
+    margin:0 auto;
+}
+body button:hover {
+    background-color: transparent;
+    color: #fff;
+}
+body section:nth-child(odd) {
+    background-color: var(--color-black);
+}
+body section:nth-child(even) {
+    background-color: var(--color-black-light);
+}
+body header {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
+}
+body header .headerren-nav {
+    display: flex;
+    padding: 10px 0px;
+    justify-content: space-between;
+    align-items: center;
+}
+body header .headerren-nav .nav-hamburger{
+display: none;
+}
+body header .headerren-nav .logo-content{
+    display: flex ;
+}
+body header .headerren-nav .logo {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+body header .headerren-nav .nav-ikon {
+    transition: all 0.5s;
+}
+body header .headerren-nav:hover > .nav-ikon {
+    transform: rotate(180deg);
+}
+body header ul{
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    text-transform: uppercase;
+}
+body header ul li{
+    position: relative;
+    padding: 5px;
+    overflow: hidden;
+    font-size: 1.8rem;
+    font-style:oblique;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+}
+body header ul li:hover{
+    color:var(--color-red);
+}
+body header ul li a::after{
+    background-color: var(--color-red);
+    content: "";
+    position: absolute;
+    width: 90%;
+    left: -100%;
+    height: 3px;
+    border-radius: 30px;
+    bottom: 0px;
+    transition: all 0.5s;
+}
+body header ul li a:hover:after{
+    left: 5%;
+}
+body header ul li:last-child{
+    background-color: var(--color-red-light);
+    border: 2px solid var(--color-red);
+    border-radius: 6%;
+    transition: all 0.2s;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    padding: 3px 10px;
+}
+body header ul li:last-child:hover{
+    background-color: inherit;
+    color: #fff;
+}
+body header ul li:last-child a::after{
+    content: none;
+}
+/********Saio hasi zatia************/
+.saioahasi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.form {
+    background-color: white;
+    width: 400px;
+    border-radius: 8px;
+    padding: 20px 40px;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+}
+.title {
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+.inputContainer {
+    position: relative;
+    height: 45px;
+    width: 90%;
+    margin-bottom: 17px;
+}
+/* Style the inputs */
+.input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #e0dada;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    background: none;
+    z-index: 1;
+}
+  /* Hide the placeholder texts (a) */
+::placeholder {
+    color: transparent;
+}
+/* Styling text labels */
+
+.label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 0 4px;
+    background-color: white;
+    color: #DADCE0;
+    font-size: 16px;
+    transition: 0.5s;
+    z-index: 0;
+}
+.submitBtn {
+    display: block;
+    margin-left: auto;
+    padding: 15px 30px;
+    border: none;
+    background-color: #C50303;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 30px;
+}
+.submitBtn:hover {
+    background-color: #924c4c;
+    transform: translateY(-2px);
+}
+.input:focus + .label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+    color: #C50303;
+}
+.input:focus {
+    border: 2px solid #C50303;
+}
+.input:not(:placeholder-shown)+ .label {
+    top: -7px;
+    left: 3px;
+    z-index: 10;
+    font-size: 14px;
+    font-weight: 600;
+}
+#saioahasi {
+    width: 30px;
+    height: 30px;
+}
+.container3{
+    width: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.container3 .card3{
+    position: relative;
+    cursor: pointer;
+    margin: 50px;
+}
