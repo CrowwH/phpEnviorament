@@ -1,28 +1,22 @@
-@charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;900&family=Poppins&display=swap");
-
 :root {
     --color-red: #c50303;
     --color-red-dark: hsl(0, 94%, 28%);
     --color-red-light: hsl(0, 86%, 51%);
     --color-black: hsl(0, 28%, 9%);
     --color-black-light: hsl(0, 0%, 18%);
-    --color-white: hsl(0, 0%, 100%);
     --color-black-light-text: hsl(0, 0%, 27%);
     --two-col-layout: 2;
     --four-col-layout: 4;
     --three-col-layout: 3;
     --total-stack-size: 10;
 }
-
 @media only screen and (max-width: 56.25em) {
     :root {
         --two-col-layout: 1;
         --four-col-layout: 1;
         --three-col-layout: 1;
-    }
 }
-
+}
 @media only screen and (max-width: 59em) {
     :root {
         --two-col-layout: 1;
@@ -30,30 +24,46 @@
         --three-col-layout: 1;
     }
 }
-
-*,
-*::before,
-*::after {
+@media only screen and (max-width: 40em) {
+    body .headerra .headerren-nav .nav-hamburger {
+        display: block;
+    }
+}
+@media only screen and (max-width: 40em) {
+        body .headerra .headerren-nav .logo {
+        font-size: 2.5rem;
+    }
+}
+@media only screen and (max-width: 40em) {
+    body .headerra .headerren-nav .nav-ikon {
+        width: 40px;
+        height: 40px;
+    }
+}
+@media only screen and (max-width: 50em) {
+    body .headerra ul{
+        display: none;
+    }
+}
+  *,
+  *::before,
+  *::after {
     margin: 0;
     padding: 0;
     box-sizing: inherit;
 }
-
 html {
     box-sizing: border-box;
     font-size: 62.5%;
     scroll-behavior: smooth;
 }
-
 h1 {
     font-size: 3.5rem;
 }
-
 a {
     text-decoration: none;
     color: inherit;
 }
-
 hr {
     border: 0;
     margin: 0;
@@ -62,24 +72,55 @@ hr {
     background: rgb(96, 96, 96);
     margin-bottom: 10px;
 }
-body {
-    background-size: 95%;
-    background-image: url(img/Proba1.jpeg);
-}
-body {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 1.6rem;
-    line-height: 1.9;
-    color:white;
+header {
+    color: #ffffff;
+    padding: 20px 0;
 }
 
-body .kontainerra {
-    max-width: 1440px;
-    padding: 0 1.4rem;
+.kontainerra {
+    width: 80%;
     margin: 0 auto;
 }
 
+.headerren-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-content {
+    display: flex;
+    align-items: center;
+}
+.headerren-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.headerren-nav ul li {
+    margin-right: 20px;
+}
+
+.headerren-nav ul li:last-child {
+    margin-right: 0;
+}
+
+.headerren-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+/* Get rid of all default margins/paddings. Set typeface */
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    background-image: url(img/Proba1.jpeg);
+    background-size: cover;
+}
 body button {
     padding: 8px 16px;
     font-style: italic;
@@ -94,108 +135,71 @@ body button {
     backdrop-filter: blur(5px);
     transition: all 0.2s;
 }
-
+body .kontainerra{
+    max-width: 1440px;
+    padding: 0 1.4rem;
+    margin:0 auto;
+}
 body button:hover {
     background-color: transparent;
     color: #fff;
 }
-
 body section:nth-child(odd) {
     background-color: var(--color-black);
 }
-
 body section:nth-child(even) {
     background-color: var(--color-black-light);
 }
-
-body .headerra {
+body header {
     position: absolute;
     top: 0;
     z-index: 10;
     width: 100%;
     background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
 }
-
-body .headerra .headerren-nav {
+body header .headerren-nav {
     display: flex;
     padding: 10px 0px;
     justify-content: space-between;
     align-items: center;
 }
-
-body .headerra .headerren-nav .nav-hamburger {
-    display: none;
+body header .headerren-nav .nav-hamburger{
+display: none;
 }
-
-@media only screen and (max-width: 50em) {
-    body .headerra .headerren-nav .nav-hamburger {
-        display: block;
-        cursor: pointer;
-    }
+body header .headerren-nav .logo-content{
+    display: flex ;
 }
-
-body .headerra .headerren-nav .logo-content {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-body .headerra .headerren-nav .logo {
+body header .headerren-nav .logo {
     font-size: 3rem;
     font-weight: 600;
     letter-spacing: 1px;
 }
-
-@media only screen and (max-width: 50em) {
-    body .headerra .headerren-nav .logo {
-        font-size: 2.5rem;
-    }
-}
-
-body .headerra .headerren-nav .nav-ikon {
+body header .headerren-nav .nav-ikon {
     transition: all 0.5s;
 }
-
-@media only screen and (max-width: 50em) {
-    body .headerra .headerren-nav .nav-ikon {
-        height: 40px;
-        width: 40px;
-    }
-}
-
-body .headerra .headerren-nav:hover>.nav-ikon {
+body header .headerren-nav:hover > .nav-ikon {
     transform: rotate(180deg);
 }
-
-body .headerra ul {
+body header ul{
     display: flex;
     gap: 15px;
     list-style: none;
     text-transform: uppercase;
 }
-
-@media only screen and (max-width: 50em) {
-    body .headerra ul {
-        display: none;
-    }
-}
-
-body .headerra ul li {
+body header ul li{
     position: relative;
     padding: 5px;
     overflow: hidden;
     font-size: 1.8rem;
-    font-style: italic;
+    font-style:oblique;
     font-weight: 600;
     letter-spacing: 1.2px;
     cursor: pointer;
 }
-
-body .headerra ul li:hover {
-    color: var(--color-red);
+body header ul li:hover{
+    color:var(--color-red);
 }
-
-body .headerra ul li a::after {
+body header ul li a::after{
     background-color: var(--color-red);
     content: "";
     position: absolute;
@@ -206,28 +210,23 @@ body .headerra ul li a::after {
     bottom: 0px;
     transition: all 0.5s;
 }
-
-body .headerra ul li a:hover:after {
+body header ul li a:hover:after{
     left: 5%;
 }
-
-body .headerra ul li:last-child {
+body header ul li:last-child{
     background-color: var(--color-red-light);
     border: 2px solid var(--color-red);
-    border-radius: 5px;
+    border-radius: 6%;
     transition: all 0.2s;
-    color: #000;
+    color: rgb(0, 0, 0);
     cursor: pointer;
     padding: 3px 10px;
 }
-
-body .headerra ul li:last-child:hover {
-    background-color: var(--color-white);
-    /****Perfilaren argazkia backgroun-a ****/
+body header ul li:last-child:hover{
+    background-color: inherit;
     color: #fff;
 }
-
-body .headerra ul li:last-child a::after {
+body header ul li:last-child a::after{
     content: none;
 }
 /********Saio hasi zatia************/
