@@ -2,10 +2,10 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['izena']) && isset($_POST['abizena']) && isset($_POST['telefonoa']) && isset($_POST['korreoa'])) {
 
-        $nombre = $_POST['izena'];
-        $apellido = $_POST['abizena'];
-        $telefono = $_POST['telefonoa'];
-        $email = $_POST['korreoa'];
+        $Izena = $_POST['izena'];
+        $Abizena = $_POST['abizena'];
+        $Telefonoa = $_POST['telefonoa'];
+        $Korreoa = $_POST['korreoa'];
 
         $db = new mysqli("localhost", "root", "root", "arte_martzialak", 3308);
 
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $stmt = $db->prepare("INSERT INTO profila (izena, abizena, telefonoa, korreoa) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $nombre, $apellido, $telefono, $email);
+        $stmt->bind_param("ssss", $Izena, $Abizena, $Telefonoa, $Korreoa);
 
         if ($stmt->execute()) {
             $stmt->close();
@@ -26,9 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 } else {
-    echo "Formularioaren datu guztik bete.";
 }
 ?>
+<!--Meter pop-up cuando se crea la cuenta y redirigir a la zona privada de la pagina web.-->
 <!DOCTYPE html>
 <html lang="es">
 <head>

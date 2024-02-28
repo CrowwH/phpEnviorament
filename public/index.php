@@ -28,7 +28,7 @@
                         <a href="#kontaktua">Kontaktua/Kokapena</a>
                     </li>
                     <li>
-                        <a href="registro.php">Erregistroa</a>
+                        <a href="erregistroa.php">Erregistroa</a>
                     </li>
                     <li>
                         <a href="saioahasi.php"><img src="img/person.svg"></a>

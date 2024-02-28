@@ -65,14 +65,13 @@ hr {
 body {
     background-size: 95%;
     background-image: url(img/Proba1.jpeg);
-    color:black;
 }
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.9;
-    color: #ffffff;
+    color:white;
 }
 
 body .kontainerra {
