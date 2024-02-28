@@ -412,7 +412,7 @@ body
 body .section-kontaktua .kontaktua .kontaktuak form input,
 body .section-kontaktua .kontaktua .kontaktuak form textarea {
   margin: 0;
-  color: #fff;
+  color: #ffffff;
   font-size: 1.8rem;
   padding: 10px 5px;
   width: 100%;
@@ -421,8 +421,14 @@ body .section-kontaktua .kontaktua .kontaktuak form textarea {
   outline: none;
   position: relative;
 }
-body .section-kontaktua .kontaktua .kontaktuak form textarea {
-  min-height: 50px;
+body .section-kontaktua .kontaktua .kontaktuak form .klasea-input select {
+  width: calc(100% - 220px); 
+  color: #aa1616;
+  font-size: 1.8rem;
+  padding: 10px 5px;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 body .section-kontaktua .kontaktua .kontaktuak form .klasea-input {
   position: relative;
@@ -530,14 +536,6 @@ body .section-footer .copyrights div {
   margin: 20px;
 }
 
-[data-aos="image-rotateIn"] {
-  transform: rotate(360deg) scale(0.5);
-  transition-property: transform, opacity;
-}
-[data-aos="image-rotateIn"].aos-animate {
-  transform: rotate(90deg) scale(1);
-}
-
 @keyframes onclick {
   0% {
     opacity: 0;
@@ -567,4 +565,4 @@ body .section-footer .copyrights div {
     opacity: 1;
     transform: translate(0);
   }
-} /*# sourceMappingURL=main.css.map */
+}

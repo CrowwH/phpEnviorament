@@ -1,25 +1,19 @@
 <?php
-// Variables para la conexión a la base de datos
-$servername = "localhost"; // Puedes cambiar esto si tu base de datos está en otro servidor
+$servername = "localhost"; 
 $username = "root";
 $password = "root";
 $dbname = "arte_martzialak";
 
-// Procesamiento del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
-    $nombre = $_POST['Izena']; // Asegúrate de que estos nombres coincidan con los atributos 'name' de tus inputs
+    $nombre = $_POST['Izena']; 
     $contrasena = $_POST['Pasahitza'];
 
-    // Crear conexión
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Verificar la conexión
     if ($conn->connect_error) {
         die("Konexioa galdu da: " . $conn->connect_error);
     }
 
-    // Insertar los datos en la base de datos
     $sql = "INSERT INTO Erabiltzailea (erabiiltzaile_izena, pasahitza) VALUES ('$nombre', '$contrasena')";
 
     if ($conn->query($sql) === TRUE) {

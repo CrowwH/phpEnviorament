@@ -1,36 +1,32 @@
 <?php
-// Primero, verificamos si se ha enviado el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Conexión a la base de datos
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $dbname = "arte_martzialak";
+    if (isset($_POST['izena']) && isset($_POST['abizena']) && isset($_POST['telefonoa']) && isset($_POST['korreoa'])) {
 
-    $conn = new mysqli($servername, $username, $password, $dbname);
+        $nombre = $_POST['izena'];
+        $apellido = $_POST['abizena'];
+        $telefono = $_POST['telefonoa'];
+        $email = $_POST['korreoa'];
 
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
+        $db = new mysqli("localhost", "root", "root", "arte_martzialak", 3308);
+
+        if ($db->connect_error) {
+            die("Connection failed: " . $db->connect_error);
+        }
+
+        $stmt = $db->prepare("INSERT INTO profila (izena, abizena, telefonoa, korreoa) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nombre, $apellido, $telefono, $email);
+
+        if ($stmt->execute()) {
+            $stmt->close();
+            $db->close();
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
-
-    // Recoger los datos del formulario
-    $izena = $_POST['izena'];
-    $abizena = $_POST['abizena'];
-    $korreoa = $_POST['korreoa'];
-    $telefonoa = $_POST['telefonoa'];
-
-    // Preparar y ejecutar la consulta SQL para insertar los datos en la tabla
-    $sql = "INSERT INTO progila (Izena, Abizena, Korreoa, Telefonoa) VALUES ('$izena', '$abizena', '$korreoa', '$telefonoa')";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Erregistroa ongi gorde da.";
-    } else {
-        echo "Errorea: " . $sql . "<br>" . $conn->error;
-    }
-
-    // Cerrar la conexión
-    $conn->close();
+} else {
+    echo "Formularioaren datu guztik bete.";
 }
 ?>
 <!DOCTYPE html>
@@ -44,42 +40,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <!-- Header -->
-<header>
-    <div class="kontainerra">
-        <nav class="headerren-nav">
-            <div class="logo-content">
-                <a href="index.html"><img src="img/karate.png" alt="logo" class="nav-ikon" width="70" height="60" ></a>
-                <div class="logo"></div>
-            </div>
-            <ul>
-                <li>
-                    <a href="#hasiera">Hasiera</a>
-                </li>
-                <li>
-                    <a href="#guriburuz">Lehiaketak</a>
-                </li>
-                <li>
-                    <a href="#lehiaketak">Klaseak</a>
-                </li>
-                <li>
-                    <a href="#lantaldea">Harremana</a>
-                </li>
-                <li>
-                    <a href="#kontaktua">Kategoriak</a>
-                </li>
-                <li>
-                    <a href="#kategoriak">Kokapena</a>
-                </li>
-                <li>
-                    <a href="registro.php">Erregistratu</a>
-                </li>
-                <li>
-                    <a href="saioahasi.html"><img id="saioahasi" src="img/person.svg"></img></a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+    <header class="headerra">
+        <div class="kontainerra">
+            <nav class="headerren-nav" aria-label="navigation">
+                <div class="logo-content">
+                    <img src="img/karate.png" alt="Logo" class="nav-ikon" width="70" height="60">
+                    <div class="logo">Arte Martzialak</div>
+                </div>
+                <img src="img/menu-hamburguesa.png" alt="navegazio icon" class="nav-hamburger" width="30" height="30"/>
+                <ul class="menua">
+                    <li> <!-- icono casa como pestaña principal -->
+                        <a href="index.html"><img src="img/casa.png" alt="home" width="30" height="30"></a>
+                    </li>
+                    <li>
+                        <a href="#guburuz">About Us</a>
+                    </li>
+                    <li>
+                        <a href="#kontaktua">Kontaktua/Kokapena</a>
+                    </li>
+                    <li>
+                        <a href="registro.php">Erregistroa</a>
+                    </li>
+                    <li>
+                        <a href="saioahasi.php"><img src="img/person.svg"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <div class="saioahasi">
         <form action="" class="form">
             <h1 class="title">Erregistroa</h1>

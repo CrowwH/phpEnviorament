@@ -5,6 +5,7 @@
     <title>Arte Martzialak</title>
     <link rel="shortcut icon" href="img/karate.png" />
     <link rel="stylesheet" href="css.css">
+    
 </head>
 <body>
     <!-- Header -->
@@ -21,19 +22,10 @@
                         <a href="index.html"><img src="img/casa.png" alt="home" width="30" height="30"></a>
                     </li>
                     <li>
-                        <a href="#lehiaketak">Lehiaketak</a>
+                        <a href="#guburuz">About Us</a>
                     </li>
                     <li>
-                        <a href="#lantaldea">Lantaldea</a>
-                    </li>
-                    <li>
-                        <a href="#kontaktua">Kontaktua</a>
-                    </li>
-                    <li>
-                        <a href="#kategoriak">Kategoriak</a>
-                    </li>
-                    <li>
-                        <a href="#kokapena">Kokapena</a>
+                        <a href="#kontaktua">Kontaktua/Kokapena</a>
                     </li>
                     <li>
                         <a href="registro.php">Erregistroa</a>
@@ -52,13 +44,13 @@
                 <div class="marcial-irudia-content">
                     <h1 class="encabezado"> Tolosako arte martzial kirol taldea</h1>
                     <p class="deskripzioa">Bidezko indarra, bidezko bidea. Klase pertsonalak eta arte martzial ezberdinak, gym propio batekin</p>
-                    <div class="marcial-box-botoiak"><button>Kategoriak...</button><button>Kirolak</button></div>
+                    <div class="marcial-box-botoiak"><button>Kategoriak...</button><button><a href="#Lehiaketak">Kurtsoak</a></button></div>
                 </div>
             </div>
         </section>
         <section class="section-guburuz" id="guburuz">
             <div class="container guburuz">
-                <div class="section-guburuz-info" data-oas="fade-down">
+                <div class="section-guburuz-info" data-aos="fade-down">
                     <h2>Tolosako Arte Martzial buruz</h2>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                         Quidem, sint nisi rerum iure voluptatem error, 
@@ -84,7 +76,7 @@
         </section>
         <section class="section-lehiaketak" id="Lehiaketak">
             <div class="container lehiaketak">
-        <!-- Lehiaketak Section-->
+        <!-- Kurtoak Section-->
               <h2 class="tituloa">Kurtsoak</h2>
               <div class="klaseak">
                 <div class="klasea" data-aos="flip-left">
@@ -132,13 +124,32 @@
           <section class="section-kontaktua" id="kontaktua">
             <div class="container kontaktua">
               <div class="kontaktuak">
-                <form>
-                  <h2 class="tituloa">Jarri gurekin kontaktuan</h2>
-                  <div class="klasea-input"><input type="text" placeholder="Izena" /></div>
+                <form action="./PHP/index.php" method="post">
+                  <h2 class="tituloa">Erregistratu hemen!!</h2>
+                  <div class="klasea-input"><input type="text" placeholder="Izena & Abizena" /></div>
                   <div class="klasea-input"><input type="email" placeholder="Email" /></div>
-      
-                  <div class="klasea-input"><input type="zenbakia" placeholder="Zenbakia" /></div>
-                  <div class="klasea-input"><textarea placeholder="Mesua"></textarea></div>
+                  <div class="klasea-input"><input type="number" placeholder="Zenbakia"/></div>
+                  <div class="klasea-input"><input type="password" placeholder="Pasahitza" /></div>
+                  <div class="klasea-input"><input type="number" id="jaioeguna" name="jaioeguna" min="1" max="31" required placeholder="Jaio-Eguna"></div>
+                  <div class="klasea-input">
+                    <select id="hilabetea" name="hilabetea" required>
+                        <option value="">*Jaio-Hilabetea*</option>
+                        <option value="1">Urtarrila</option>
+                        <option value="2">Otsaila</option>
+                        <option value="3">Martxoa</option>
+                        <option value="4">Apirila</option>
+                        <option value="5">Maiatza</option>
+                        <option value="6">Ekaina</option>
+                        <option value="7">Uztaila</option>
+                        <option value="8">Abuztua</option>
+                        <option value="9">Iraila</option>
+                        <option value="10">Urria</option>
+                        <option value="11">Azaroa</option>
+                        <option value="12">Abendua</option>
+                    </select>
+                  </div>
+                  <div class="klasea-input"><input type="number" id="urtea" name="urtea" min="1900" max="2100" required placeholder="Jaio-Urtea">
+                  </div>
                   <button>Bidali</button>
                 </form>
               </div>
@@ -190,6 +201,6 @@
           <div>Copyright © by KOBAZ</div>
         </div>
       </footer>
-    <script src="index.js"></script>
+      <script src="index.js"></script>
 </body>
 </html>
