@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Erregistroa</title>
     <link rel="shortcut icon" href="img/karate.png" />
-    <link rel="stylesheet" href="registro.css">
+    <link rel="stylesheet" href="erregistroa.css">
 </head>
 <body>
     <!-- Header -->
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <img src="img/menu-hamburguesa.png" alt="navegazio icon" class="nav-hamburger" width="30" height="30"/>
                 <ul class="menua">
-                    <li> <!-- icono casa como pestaña principal -->
+                    <li>
                         <a href="index.html"><img src="img/casa.png" alt="home" width="30" height="30"></a>
                     </li>
                     <li>
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <a href="#kontaktua">Kontaktua/Kokapena</a>
                     </li>
                     <li>
-                        <a href="registro.php">Erregistroa</a>
+                        <a href="erregistroa.php">Erregistroa</a>
                     </li>
                     <li>
                         <a href="saioahasi.php"><img src="img/person.svg"></a>

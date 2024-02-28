@@ -5,8 +5,8 @@ $password = "root";
 $dbname = "arte_martzialak";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = $_POST['Izena']; 
-    $contrasena = $_POST['Pasahitza'];
+    $Erabiltzaile_izena = $_POST['Izena']; 
+    $Pasahitza = $_POST['Pasahitza'];
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Konexioa galdu da: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO Erabiltzailea (erabiiltzaile_izena, pasahitza) VALUES ('$nombre', '$contrasena')";
+    $sql = "INSERT INTO Erabiltzailea (Erabiltzaile_izena, Pasahitza) VALUES ('$Erabiltzaile_izena', '$Pasahitza')";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: registro.php");
@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,11 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1 class="title">Saioa Hasi</h1>
     
         <div class="inputContainer">
-            <input type="text" class="input" placeholder="Nombre" name="nombre">
+            <input type="text" class="input" placeholder="Nombre" name="Izena">
             <label for="" class="label">Erabiltzailea</label>
         </div>
         <div class="inputContainer">
-            <input type="password" class="input" placeholder="Contraseña" name="contrasena">
+            <input type="password" class="input" placeholder="Contraseña" name="Pasahitza">
             <label for="" class="label">Pasahitza</label>
         </div>
             <input type="submit" class="submitBtn" value="Sartu">

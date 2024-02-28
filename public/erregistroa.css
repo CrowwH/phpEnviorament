@@ -62,7 +62,11 @@ hr {
     background: rgb(96, 96, 96);
     margin-bottom: 10px;
 }
-
+body {
+    background-size: 95%;
+    background-image: url(img/Proba1.jpeg);
+    color:black;
+}
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
