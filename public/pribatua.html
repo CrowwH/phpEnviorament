@@ -7,9 +7,6 @@
     <title>Área Privada</title>
     <link rel="shortcut icon" href="img/karate.png" />
     <link rel="stylesheet" href="pribatua.css">
-    <style>
-        /* Estilos adicionales pueden agregarse aquí */
-    </style>
 </head>
 
 <body>
@@ -21,9 +18,8 @@
                     <img src="img/karate.png" alt="Logo" class="nav-ikon" width="70" height="60">
                     <div class="logo">Arte Martzialak</div>
                 </div>
-                <img src="menu-hamburguesa.png" alt="navegazio icon" class="nav-hamburger" width="30" height="30" />
                 <ul class="menua">
-                    <li><!-- icono casa como pestaña principal -->
+                    <li>
                         <a href="index.php"><img src="img/casa.png" alt="home" width="30" height="30"></a>
                     </li>
                     <li>
@@ -42,68 +38,83 @@
             </nav>
         </div>
     </header>
-
     <!-- Datos Personales -->
-    <section id="datos_personales" class="section">
+    <section id="datos_personales" class="section active">
         <div class="container">
-            <h2>Datos Personales</h2>
+            <div class="menua2">
+                <ul>
+                    <li>
+                        <a href="#datos_personales">Datos Personales</a>
+                    </li>
+                    <li>
+                        <a href="#resultados">Resultados</a>
+                    </li>
+                    <li>
+                        <a href="#pagos">Pagos</a>
+                    </li>
+                </ul>
+            </div>
             <form id="form_datos_personales">
                 <div class="input-group">
-                    <label for="dni">DNI:</label>
+                    <label for="dni">DNI/NAN:</label>
                     <input type="text" id="dni" name="dni">
                 </div>
                 <div class="input-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre">
+                    <label for="izena">Izena:</label>
+                    <input type="text" id="izena" name="izena">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Pasahitza:</label>
-                    <input type="password" id="direccion" name="direccion">
+                    <label for="E.izena">Erabiltzaile izena:</label>
+                    <input type="text" id="E.izena" name="E.izena">
                 </div>
                 <div class="input-group">
-                    <label for="fecha_nacimiento">Jaiotze data</label>
-                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+                    <label for="pasahitza">Pasahitza:</label>
+                    <input type="password" id="pasahitza" name="pasahitza">
+                </div>
+                <div class="input-group">
+                    <label for="jaiotze_data">Jaiotze data</label>
+                    <input type="date" id="jaiotze_data" name="jaiotze_data">
                 </div>
                 <div class="input-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email">
                 </div>
                 <div class="input-group">
-                    <label for="sexo">Sexua:</label>
-                    <input type="text" id="sexo" name="sexo">
+                    <label for="sexua">Sexua:</label>
+                    <input type="text" id="sexua" name="sexua">
                 </div>
                 <div class="input-group">
-                    <label for="telefono">Telefonoa:</label>
-                    <input type="tel" id="telefono" name="telefono">
+                    <label for="telefonoa">Telefonoa:</label>
+                    <input type="tel" id="telefonoa" name="telefonoa">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Helbidea:</label>
-                    <input type="text" id="direccion" name="direccion">
+                    <label for="Helbidea">Helbidea:</label>
+                    <input type="text" id="Helbidea" name="Helbidea">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Herria:</label>
-                    <input type="text" id="direccion" name="direccion">
+                    <label for="Herria">Herria:</label>
+                    <input type="text" id="Herria" name="Herria">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Posta Kodea:</label>
-                    <input type="text" id="direccion" name="direccion">
+                    <label for="posta_kodea">Posta Kodea:</label>
+                    <input type="text" id="posta_kodea" name="posta_kodea">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Probintzia:</label>
-                    <input type="text" id="direccion" name="direccion">
+                    <label for="Probintzia">Probintzia:</label>
+                    <input type="text" id="Probintzia" name="Probintzia">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Herrialdea:</label>
-                    <input type="text" id="direccion" name="direccion">
+                    <label for="Herrialdea">Herrialdea:</label>
+                    <input type="text" id="Herrialdea" name="Herrialdea">
                 </div>
                 <div class="input-group">
-                    <label for="direccion">Kontu korrontea:</label>
-                    <input type="text" id="direccion" name="direccion">
+                    <label for="kontu_korrontea">Kontu korrontea:</label>
+                    <input type="text" id="kontu_korrontea" name="kontu_korrontea">
                 </div>
 
                 <div class="btn-group">
                     <button type="submit">Datuak Gorde</button>
-                    <button type="submit">Datuak Aldatu</button>
+                    <button>Datuak Aldatu</button>
                 </div>
             </form>
         </div>
@@ -130,7 +141,6 @@
                             <td>Peio Errasti</td>
                             <td>iker Hernandez</td>
                         </tr>
-                        <!-- Puedes agregar más filas según sea necesario -->
                     </tbody>
                 </table>
             </div>
@@ -138,10 +148,10 @@
     </section>
 
     <!-- Pagos -->
-    <section class="section" id="pagos">
+    <section id="pagos" class="section">
         <div class="container">
             <h2>Ordainketa</h2>
     </section>
+    <script src="pribatua.js"></script>
 </body>
-
 </html>

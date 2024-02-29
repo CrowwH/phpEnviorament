@@ -61,7 +61,7 @@ label {
     font-weight: bold;
 }
 
-input[type="text"] {
+input{
     width: calc(100% - 10px);
     padding: 10px;
     border: 1px solid #ccc;
@@ -74,7 +74,7 @@ input[type="text"] {
 }
 
 button[type="submit"],
-button[type="reset"] {
+button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -84,8 +84,27 @@ button[type="reset"] {
 }
 
 button[type="submit"]:hover,
-button[type="reset"]:hover {
+button:hover {
     background-color: #555;
+}
+/*****Txartel estiloak******/
+.formulario-container {
+    max-width: 600px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form_datos_personales {
+    background-color: rgba(0, 0, 0, 0.842);
+    color: red;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(165, 13, 13, 0.288);
+    margin-bottom: 20px;
+}
+
+#form_datos_personales h2 {
+    color: white; /* Cambia el color del título si es necesario */
 }
 
 /* Resultados */
@@ -143,18 +162,18 @@ input[type="text"] {
 }
 
 button[type="submit"],
-button[type="reset"] {
+button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #333;
+    background-color: #c50303;
     color: #fff;
     cursor: pointer;
 }
 
 button[type="submit"]:hover,
-button[type="reset"]:hover {
-    background-color: #555;
+button:hover {
+    background-color: #c503039c;
 }
 
 /* Resultados */
@@ -174,6 +193,47 @@ table td {
 }
 
 table th {
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
+}
+/******Diferenes pestañas*****/
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+.menua2 {
+    position: relative;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.842);
+    box-shadow: 0 4px 8px rgba(165, 13, 13, 0.288);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    
+}
+
+.menua2 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menua2 li {
+    display: inline-block;
+}
+
+.menua2 li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+    color:white;
+}
+
+.menua2 li a:hover {
+    background-color: #c50303;
 }
