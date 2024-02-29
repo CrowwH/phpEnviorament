@@ -1,45 +1,43 @@
 <?php
-$servername = "mysql";
-$username = "root";
-$password = "root";
-$dbname = "arte_martzialak";
+$zerbitzaria = "mysql";
+$erabiltzailea = "root";
+$pasahitza = "root";
+$dbname = "arte_martziala";
 
-// Establecer la conexión con la base de datos
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Konexioa ezarri datu-basearekin
+$conn = new mysqli($zerbitzaria, $erabiltzailea, $pasahitza, $dbname);
 
-// Comprobar la conexión
+// Konexioa egiaztatu
 if ($conn->connect_error) {
     die("<script>alert('Konexioak huts egin du: " . $conn->connect_error . "');</script>");
 }
 
-// Comprobar si se ha enviado el formulario
+// Formularioa bidali den egiaztatu
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener los datos del formulario
+    // Formularioaren datuak jaso
     $Erabiltzaile_izena = $_POST['Izena'];
     $Pasahitza = $_POST['Pasahitza'];
     
-    // Preparar la consulta SQL para verificar las credenciales
-    $sql = "SELECT * FROM erabiltzailea WHERE Izena='$Erabiltzaile_izena' AND Pasahitza='$Pasahitza'";
+    // Kredentzialak egiaztatzeko SQL kontsulta prestatu
+    $sql = "SELECT * FROM Erabiltzailea WHERE erabiltzaile_izena='$Erabiltzaile_izena' AND pasahitza='$Pasahitza'";
     
-    // Ejecutar la consulta
+    // Kontsulta exekutatu
     $result = $conn->query($sql);
     
-    // Comprobar si se encontraron resultados
-    if ($result->num_rows > 0) {
-        // Inicio de sesión exitoso, redirigir al usuario a la página principal
+    // Emaitzak aurkitu diren egiaztatu
+    if ($result && $result->num_rows > 0) {
+        // Saioa ongi hasi da, erabiltzailea orrira bideratu
         echo "<script>alert('Saioa ongi hasi da.'); window.location.href = 'index.php';</script>";
+        exit(); // Bukaera exekuzioari jarraitu bideraketa gero
     } else {
-        // Credenciales incorrectas, mostrar mensaje de error y establecer enfoque en el primer campo
-        echo "<script>alert('Erabiltzailea edo pasahitza okerra.');";
-        echo "document.getElementById('Izena').focus();</script>";
+        // Kredentzial okerrak, errore mezu bat erakutsi eta saioa hasierako orrira bideratu
+        echo "<script>alert('Erabiltzailea edo pasahitza okerra.'); window.location.href = 'saioahasi.php';</script>";
+        exit(); // Bukaera exekuzioari jarraitu bideraketa gero
     }
-    
-    // Liberar el resultado
-    $result->free_result();
-    
-    // Cerrar la conexión con la base de datos
-    $conn->close();
 }
+
+// Datu-basearekin konexioa itxi (formulario blokearen kanpoan)
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
