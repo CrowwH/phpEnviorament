@@ -21,7 +21,7 @@
         <img src="img/menu-hamburguesa.png" alt="navegazio icon" class="nav-hamburger" width="30" height="30" />
         <ul class="menua">
           <li> <!-- icono casa como pestaña principal -->
-            <a href="index.html"><img src="img/casa.png" alt="home" width="30" height="30"></a>
+            <a href="index.php"><img src="img/casa.png" alt="home" width="30" height="30"></a>
           </li>
           <li>
             <a href="#guburuz">About Us</a>
@@ -136,7 +136,7 @@
             <div class="klasea-input"><input type="text" placeholder="Izena"></div>
             <div class="klasea-input"><input type="email" placeholder="Email" /></div>
             <div class="klasea-input"><input type="number" placeholder="Telefonoa"></div>
-            <div class="klasea-input"><textarea placeholder="Mesua"></textarea></div>
+            <div class="klasea-input"><textarea placeholder="Mezua"></textarea></div>
             <button>Bidali</button>
           </form>
         </div>

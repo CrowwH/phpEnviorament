@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Emaitzak aurkitu diren egiaztatu
     if ($result && $result->num_rows > 0) {
         // Saioa ongi hasi da, erabiltzailea orrira bideratu
-        echo "<script>alert('Saioa ongi hasi da.'); window.location.href = 'index.php';</script>";
+        echo "<script>alert('Saioa ongi hasi da.'); window.location.href = 'pribatua.php';</script>";
         exit(); // Bukaera exekuzioari jarraitu bideraketa gero
     } else {
         // Kredentzial okerrak, errore mezu bat erakutsi eta saioa hasierako orrira bideratu
