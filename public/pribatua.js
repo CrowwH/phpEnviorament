@@ -1,28 +1,36 @@
 document.addEventListener("DOMContentLoaded", function () {
-  alert("El DOM ha sido cargado.");
+    const datosPersonalesLink = document.querySelector('a[href="#datos_personales"]');
+    const resultadosLink = document.querySelector('a[href="#resultados"]');
+    const pagosLink = document.querySelector('a[href="#pagos"]');
+    const datosPersonalesSection = document.getElementById('datos_personales');
+    const resultadosSection = document.getElementById('resultados');
+    const pagosSection = document.getElementById('pagos');
 
-  const sections = document.querySelectorAll(".section");
-  alert("Se encontraron las secciones: " + sections.length);
+    let currentSection = datosPersonalesSection; // Inicialmente establecer la sección actual como "Datos personales"
 
-  const links = document.querySelectorAll(".menua a");
-  alert("Se encontraron los enlaces: " + links.length);
+    datosPersonalesLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        toggleSection(datosPersonalesSection);
+    });
 
-  links.forEach(link => {
-      link.addEventListener("click", function (e) {
-          alert("Se hizo clic en un enlace.");
+    resultadosLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        toggleSection(resultadosSection);
+    });
 
-          e.preventDefault();
-          const targetId = this.getAttribute("href");
-          alert("El ID del objetivo es: " + targetId);
+    pagosLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        toggleSection(pagosSection);
+    });
 
-          const targetSection = document.querySelector(targetId);
-          alert("La sección objetivo es: " + targetSection.id);
-
-          sections.forEach(section => {
-              section.classList.remove("active");
-          });
-
-          targetSection.classList.add("active");
-      });
-  });
+    function toggleSection(section) {
+        // Ocultar la sección actual
+        currentSection.classList.remove("active");
+        
+        // Mostrar la sección deseada
+        section.classList.add("active");
+        
+        // Actualizar la sección actual
+        currentSection = section;
+    }
 });

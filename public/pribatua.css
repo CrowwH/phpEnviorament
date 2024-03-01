@@ -1,66 +1,222 @@
+/***Header****/
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;500;900&family=Poppins&display=swap");
+:root {
+    --color-red: #c50303;
+    --color-red-dark: hsl(0, 94%, 28%);
+    --color-red-light: hsl(0, 86%, 51%);
+    --color-black: hsl(0, 28%, 9%);
+    --color-black-light: hsl(0, 0%, 18%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-black-light-text: hsl(0, 0%, 27%);
+    --two-col-layout: 2;
+    --four-col-layout: 4;
+    --three-col-layout: 3;
+    --total-stack-size: 10;
+}
+@media only screen and (max-width: 56.25em) {
+    :root {
+        --two-col-layout: 1;
+        --four-col-layout: 1;
+        --three-col-layout: 1;
+    }
+}
+@media only screen and (max-width: 59em) {
+    :root {
+        --two-col-layout: 1;
+        --four-col-layout: 1;
+        --three-col-layout: 1;
+    }
+}
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+h1 {
+    font-size: 3.5rem;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+hr {
+    border: 0;
+    margin: 0;
+    width: 100%;
+    height: 2px;
+    background: rgb(96, 96, 96);
+    margin-bottom: 10px;
+}
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.9;
+    color: #ffffff;
+}
+body .kontainerra {
+    max-width: 1440px;
+    padding: 0 1.4rem;
+    margin: 0 auto;
+}
+body button, button[type="submit"] {
+    padding: 8px 16px;
+    font-style: italic;
+    text-transform: uppercase;
+    background-color: var(--color-red);
+    border: 2px solid var(--color-red);
+    font-weight: 600;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    transition: all 0.2s;
+}
+body section:nth-child(odd) {
+    background-color: var(--color-black);
+}
+body section:nth-child(even) {
+    background-color: var(--color-black-light);
+}
+body .headerra {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    background-image: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0));
+}
+body .headerra .headerren-nav {
+    display: flex;
+    padding: 10px 0px;
+    justify-content: space-between;
+    align-items: center;
+}
+body .headerra .headerren-nav .nav-hamburger {
+    display: none;
+}
+@media only screen and (max-width: 50em) {
+    body .headerra .headerren-nav .nav-hamburger {
+        display: block;
+        cursor: pointer;
+    }
+}
+body .headerra .headerren-nav .logo-content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+body .headerra .headerren-nav .logo {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+@media only screen and (max-width: 50em) {
+    body .headerra .headerren-nav .logo {
+        font-size: 2.5rem;
+    }
+}
+body .headerra .headerren-nav .nav-ikon {
+    transition: all 0.5s;
+}
+@media only screen and (max-width: 50em) {
+    body .headerra .headerren-nav .nav-ikon {
+        height: 40px;
+        width: 40px;
+    }
+}
+body .headerra .headerren-nav:hover>.nav-ikon {
+    transform: rotate(180deg);
+}
+body .headerra ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    text-transform: uppercase;
+}
+@media only screen and (max-width: 50em) {
+    body .headerra ul {
+        display: none;
+    }
+}
+body .headerra ul li {
+    position: relative;
+    padding: 5px;
+    overflow: hidden;
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+}
+body .headerra ul li:hover {
+    color: var(--color-red);
+}
+body .headerra ul li a::after {
+    background-color: var(--color-red);
+    content: "";
+    position: absolute;
+    width: 90%;
+    left: -100%;
+    height: 3px;
+    border-radius: 30px;
+    bottom: 0px;
+    transition: all 0.5s;
+}
+body .headerra ul li a:hover:after {
+    left: 5%;
+}
+body .headerra ul li:last-child {
+    background-color: var(--color-red-light);
+    border: 2px solid var(--color-red);
+    border-radius: 5px;
+    transition: all 0.2s;
+    color: #000;
+    cursor: pointer;
+    padding: 3px 10px;
+}
+body .headerra ul li:last-child:hover {
+    background-color: var(--color-white);
+    /****Perfilaren argazkia backgroun-a ****/
+    color: #fff;
+}
+body .headerra ul li:last-child a::after {
+    content: none;
+}
 /* Estilos Generales */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-
 .container {
     width: 80%;
     margin: 0 auto;
 }
-
-/* Header */
-.header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-}
-
-.header-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo-content {
-    display: flex;
-    align-items: center;
-}
-
-.nav-icon {
-    margin-right: 10px;
-}
-
-.menu {
-    list-style: none;
-    display: flex;
-}
-
-.menu li {
-    margin-right: 20px;
-}
-
 /* Secciones */
 .section {
     padding: 40px 0;
 }
-
 /* Formulario */
 form {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
-
 .input-group {
     margin-bottom: 20px;
 }
-
 label {
     font-weight: bold;
 }
-
 input{
     width: calc(100% - 10px);
     padding: 10px;
@@ -68,11 +224,9 @@ input{
     border-radius: 5px;
     box-sizing: border-box;
 }
-
 .btn-group {
     grid-column: span 2;
 }
-
 button[type="submit"],
 button {
     padding: 10px 20px;
@@ -82,7 +236,6 @@ button {
     color: #fff;
     cursor: pointer;
 }
-
 button[type="submit"]:hover,
 button:hover {
     background-color: #555;
@@ -93,16 +246,14 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
 }
-
 #form_datos_personales {
     background-color: rgba(0, 0, 0, 0.842);
-    color: red;
+    color: rgb(255, 255, 255);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(165, 13, 13, 0.288);
     margin-bottom: 20px;
 }
-
 #form_datos_personales h2 {
     color: white; /* Cambia el color del título si es necesario */
 }
@@ -111,25 +262,21 @@ button:hover {
 .table-container {
     overflow-x: auto;
 }
-
 table {
     width: 100%;
     border-collapse: collapse;
 }
-
 table th,
 table td {
     padding: 10px;
     border: 1px solid #ccc;
 }
-
 table th {
     background-color: #333;
     color: #fff;
 }
 
-
-/* Secciones */
+/******Sekzioa****/
 .section {
     padding: 40px 0;
 }
@@ -170,12 +317,6 @@ button {
     color: #fff;
     cursor: pointer;
 }
-
-button[type="submit"]:hover,
-button:hover {
-    background-color: #c503039c;
-}
-
 /* Resultados */
 .table-container {
     overflow-x: auto;
@@ -193,7 +334,7 @@ table td {
 }
 
 table th {
-    background-color: #000000;
+    background-color: #c50303;
     color: #fff;
 }
 /******Diferenes pestañas*****/
@@ -206,11 +347,12 @@ table th {
 }
 .menua2 {
     position: relative;
+    margin-top: 15%;
     top: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.842);
     box-shadow: 0 4px 8px rgba(165, 13, 13, 0.288);
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     border-radius: 10px;
     
 }
@@ -236,4 +378,66 @@ table th {
 
 .menua2 li a:hover {
     background-color: #c50303;
+}
+
+/**Footer**/
+body .section-footer {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+    background-color: #161616;
+}
+body .section-footer .footer-box {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(var(--three-col-layout),
+            minmax(min-content, 1fr));
+    grid-column-gap: 10rem;
+    grid-row-gap: 5rem;
+    justify-content: space-around;
+    padding: 30px 30px;
+}
+body .section-footer .footer-box .contact-details .contact-company-address {
+    font-size: 1.8rem;
+    margin: 10px 0px;
+}
+body .section-footer .footer-box .contact-social-links {
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    gap: 4rem;
+}
+body .section-footer .footer-box .footer-nav h3 {
+    margin: 10px 0px;
+}
+body .section-footer .footer-box .footer-nav li {
+    font-size: 1.7rem;
+    list-style: none;
+}
+body .section-footer .footer-box .newsletter h3 {
+    margin: 10px 0px;
+}
+body .section-footer .footer-box .newsletter input {
+    padding: 8px 10px;
+    width: 60%;
+    background-color: #414141;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.7rem;
+    outline: none;
+}
+body .section-footer .footer-box .newsletter button {
+    font-weight: 900;
+    padding: 8px 20px;
+}
+body .section-footer .copyrights {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+body .section-footer .copyrights div {
+    font-size: 1.8rem;
+    margin: 20px;
 }

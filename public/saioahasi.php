@@ -2,7 +2,7 @@
 $zerbitzaria = "mysql";
 $erabiltzailea = "root";
 $pasahitza = "root";
-$dbname = "arte_martziala";
+$dbname = "arte_martzialak";
 
 // Konexioa ezarri datu-basearekin
 $conn = new mysqli($zerbitzaria, $erabiltzailea, $pasahitza, $dbname);
