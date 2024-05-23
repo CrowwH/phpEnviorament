@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard de Repartidor</title>
+    <link rel="shortcut icon" href="public\assets\img\logo erronka3.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="dashboardStyle.css">
@@ -12,15 +12,16 @@
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="img/logo erronka3.png" alt="enpresarenLogo" class="logoa">
+                <img src="assets/img/logo erronka3.png" alt="enpresarenLogo" class="logoa">
             </div>
             <ul class="list-unstyled components">
                 <li>
                     <a href="#">Pakete entrega</a>
                 </li>
                 <li>
-                    <a href="perfila.html">Perfila</a>
+                    <a href="perfila.php">Perfila</a>
                 </li>
+                <button type="button" class="logout">Saioa Itxi</button>
             </ul>
         </nav>
         <div id="content">
