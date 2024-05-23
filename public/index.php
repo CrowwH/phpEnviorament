@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             if (password_verify($pasahitza, $row['pasahitza'])) {
-                $_SESSION['id_Langileak'] = $row['id_Langilea'];
+                $_SESSION['id_Langilea'] = $row['id_Langilea'];
                 $_SESSION['erabiltzailea'] = $row['erabiltzailea'];
                 header("Location: dashboard.php");
                 exit();
@@ -100,7 +100,7 @@ $conn->close();
             <div class="back__boxa">
                 <div class="back__boxa-logina">
                     <h3>¿Jada kontua duzu?</h3>
-                    <p>Saioa hasi paginara abiatzeko</p>
+                    <p>Saioa hasi orrialdera abiatzeko</p>
                     <button id="btn__iniciar-sesion">Saioa hasi</button>
                 </div>
                 <div class="caja__trasera-register">
@@ -132,7 +132,7 @@ $conn->close();
                         var pasahitzaInput = document.getElementById("pasahitza");
                         var pasahitza = pasahitzaInput.value;
 
-                        if (pasahitza.length > 8) {
+                        if (pasahitza.length < 8) {
                             alert("Pasahitza 8 karaktere baino gutxiago ezin du eduki.");
                             return false;
                         }
