@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $abizena = $_POST['abizena'];
     $telefonoa = $_POST['telefonoa'];
     $herria = $_POST['herria'];
-    $langile_mota = $_POST['langile_mota'];
+    $langile_mota = $_POST['langile_mota'] ??'';
 
     $sql = "UPDATE Langileak SET 
             erabiltzailea = '$erabiltzailea', 
@@ -29,11 +29,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             nan = '$nan',
             telefonoa = '$telefonoa', 
             herria = '$herria', 
-            langile_mota = '$langile_mota',
+            langile_mota = '$langile_mota'
             WHERE erabiltzailea = '$erabiltzailea'";
     
     if ($conn->query($sql) === TRUE) {
-        echo "<div style='text-align: center; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 10px; margin-bottom: 20px;'>";
+        echo "<div style='text-align: center; background-color: #63D140; border: 1px solid #c3e6cb; padding: 10px; margin-bottom: 20px;'>";
         echo "<strong>Datuak gorde dira! Itxaron 3 segundu...</strong>";
         echo "</div>";
         echo "<script>";

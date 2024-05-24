@@ -5,7 +5,20 @@ body {
     padding: 0;
     height: 100vh;
 }
-
+@media only screen and (max-width: 56.25em) {
+    :root {
+        --two-col-layout: 1;
+        --four-col-layout: 1;
+        --three-col-layout: 1;
+    }
+}
+@media only screen and (max-width: 59em) {
+    :root {
+        --two-col-layout: 1;
+        --four-col-layout: 1;
+        --three-col-layout: 1;
+    }
+}
 .wrapper {
     display: flex;
     width: 100%;
@@ -15,11 +28,10 @@ body {
     min-width: 100px;
     max-width: 100px;
 }
-
 #sidebar {
     min-width: 250px;
     height: 100vh;
-    background: #000000;
+    background: #343a40;
     color: #fff;
     transition: all 0.3s;
     position: fixed;
@@ -76,17 +88,17 @@ body {
     color: #343a40;
 }
 
-#sidebarCollapse {
-    background: #7386d5;
-    color: #fff;
-}
-
-#sidebarCollapse:hover {
-    background: #6a79c1;
-}
-
 /*******BERRIA********/
-
+#dataldatu {
+    border: 2px solid #000000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 2.5%;
+    background-color: #007ED1;
+    text-align: center;
+    width: 300px;
+    color:white;
+}
 /* **Formulario****/
 form {
     display: grid;
@@ -119,7 +131,7 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #0a25be;
+    background-color: #007ED1;
     color: #fff;
     cursor: pointer;
 }
@@ -148,37 +160,6 @@ button:hover {
     box-shadow: 0 4px 8px rgba(165, 13, 13, 0.288);
     margin-bottom: 20px;
 }
-
-#form_datos_personales h2 {
-    color: rgb(0, 0, 0); /* Cambia el color del título si es necesario */
-}
-
-/* Resultados */
-.table-container {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th,
-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-
-table th {
-    background-color: #000000;
-    color: #ffffff;
-}
-
-/******Sekzioa****/
-.section {
-    padding: 40px 0;
-}
-
 /**** Formulario ****/
 form {
     display: grid;
@@ -211,51 +192,30 @@ button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #0316c5;
+    background-color: #007ED1;
     color: #fff;
     cursor: pointer;
 }
-
-/* Resultados */
-.table-container {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th,
-table td {
-    padding: 10px;
-    border: 1px solid #ffffff;
-}
-
-table th {
-    background-color: #042ad1;
-    color: #000000;
-}
-
-.section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-.menua2 ul li a {
+/****Footer****/
+body .section-footer {
     position: relative;
-    margin-top: 15%;
-    top: 0;
-    right: 0;
-    box-shadow: 0 4px 8px rgba(165, 13, 13, 0.288);
-    border: 1px solid #000000;
-    border-radius: 10px;
+    margin-top: 7.5%;
+    padding-top: 5%;
+    background-color: #000000;
+    color: white
+}
+body .section-footer .footer-box .footer-nav h3 {
+    margin: 10px 0px;
+}
+body .section-footer .footer-box .footer-nav li {
+    font-size: 1.7rem;
     list-style: none;
 }
-
-.menua2 li {
-    display: inline-block;
+body .section-footer .copyrights {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
 }
