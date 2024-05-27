@@ -1,4 +1,99 @@
-<!DOCTYPE html>
+<?php
+// Iniciar sesión al principio del script para evitar problemas de envío de encabezados
+session_start();
+
+// Establecer la conexión a la base de datos (reemplaza los valores según tu configuración)
+$servername = "mysql";
+$username = "root";
+$password = "root";
+$database = "paketeria";
+
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Obtener el ID del usuario que ha iniciado sesión
+$id_langilea = $_SESSION['id_Langilea'];
+
+// Consulta SQL para obtener los paquetes del usuario usando declaraciones preparadas
+$stmt = $conn->prepare("SELECT * FROM Paketea WHERE id_Langilea = ?");
+$stmt->bind_param("i", $id_langilea);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Verificar si se encontraron resultados
+if ($result->num_rows > 0) {
+    // Mostrar los paquetes del usuario
+    while ($row = $result->fetch_assoc()) {
+        echo "ID del Paquete: " . $row["id_Paketea"]. 
+        " - Dirección de entrega: " . $row["entregatze_helbidea"]. 
+        "   Fecha de entrega: " . $row["entregatze_data"]. 
+        "<br>";
+        // Puedes mostrar más detalles si lo deseas
+    }
+} else {
+    echo "No se encontraron paquetes para este usuario.";
+}
+
+// Cerrar conexión
+$stmt->close();
+$conn->close();
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -12,10 +107,11 @@
 </head>
 
 <body>
+    Header
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="assets/img/logo erronka3.png" alt="enpresarenLogo" class="logoa">
+            <a href="dashboard.php" ><img src="img/logo erronka3.png" alt="enpresarenLogo" class="logoa" ></a>
             </div>
             <ul class="list-unstyled components">
                 <li>
@@ -27,42 +123,17 @@
             </ul>
         </nav>
     </div>
+
+    Edukia
     <div class="card-container">
+        
         <div class="card">
             <h2>Banatu beharreko paketeak:</h2>
-            <?php
-            // Conexión a la base de datos
-            $servername = "mysql";
-            $username = "root";
-            $password = "root";
-            $dbname = "paketeria";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Conexión fallida: " . $conn->connect_error);
-            }
-
-            // Consulta SQL para obtener los paquetes en curso
-            $sql = "SELECT id_Paketea, id_Langilea, id_Bezeroa, entregatze_data, irteera_data, inzidentzia, egoera FROM Paketea WHERE egoera = 'abian'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                echo "<ul>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<li>Paquete ID: " . $row["id_Paketea"] . " - Cliente ID: " . $row["id_Bezeroa"] . " - Fecha de Entrega: " . $row["entregatze_data"] . "</li>";
-                }
-                echo "</ul>";
-            } else {
-                echo "No hay paquetes en curso.";
-            }
-
-            $conn->close();
-            ?>
+            <button>Banatu</button>
         </div>
+
         <div class="card">
             <h2>Abian dagoen Paketea</h2>
-            <!-- Aquí puedes agregar más contenido relacionado con los paquetes en curso -->
         </div>
         <div class="card">
             <h2>Pakete egoera</h2>
@@ -76,34 +147,10 @@
         </div>
         <div class="card">
             <h2>Entregatutako paketeak</h2>
-            <?php
-            // Conexión a la base de datos
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Conexión fallida: " . $conn->connect_error);
-            }
-
-            // Consulta SQL para obtener los paquetes entregados
-            $sql = "SELECT id_Paketea, id_Langilea, id_Bezeroa, entregatze_data, irteera_data, inzidentzia, egoera FROM Paketea WHERE egoera = 'entregatuta'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                echo "<ul>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<li>Paquete ID: " . $row["id_Paketea"] . " - Cliente ID: " . $row["id_Bezeroa"] . " - Fecha de Entrega: " . $row["entregatze_data"] . "</li>";
-                }
-                echo "</ul>";
-            } else {
-                echo "No hay paquetes entregados.";
-            }
-
-            $conn->close();
-            ?>
         </div>
     </div>
 
-    <!-- Modal -->
+    Modal
     <div id="myModal" class="modal">
         <span class="close" onclick="closeReasonModal()">&times;</span>
         <h2>Pakete entrega dezeztatua</h2>
@@ -111,7 +158,7 @@
         <textarea id="reason" rows="4" cols="30"></textarea><br>
         <button onclick="saveReason()" class="btn">Gorde</button>
     </div>
-    <script src="assets/js/scripta.js"></script>
+    <script src="js/scripta.js"></script>
     <script>
         function openReasonModal() {
             document.getElementById('myModal').style.display = "block";
@@ -129,4 +176,4 @@
     </script>
 </body>
 
-</html>
+</html>-->

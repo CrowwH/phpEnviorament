@@ -12,7 +12,7 @@
     <div class="wrapper">
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="assets/img/logo erronka3.png" alt="enpresarenLogo" class="logoa">
+            <a href="dashboard.php" ><img src="img/logo erronka3.png" alt="enpresarenLogo" class="logoa" ></a>
             </div>
             <ul class="list-unstyled components">
                 <li>
