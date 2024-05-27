@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT l.nan, l.izena, l.abizena, l.erabiltzailea, l.pasahitza, l.herria, l.telefonoa, l.langile_mota
-        FROM Langileak l
+        FROM langileak l
         WHERE l.erabiltzailea = '{$_SESSION['erabiltzailea']}'";
 
 $result = $conn->query($sql);
@@ -47,7 +47,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gune Pribatua</title>
-    <link rel="shortcut icon" href="assets/img/logo erronka3.png" />
+    <link rel="shortcut icon" href="img/logo erronka3.png" />
     <link rel="stylesheet" href="perfilaStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -61,7 +61,7 @@ $conn->close();
             </div>
             <ul class="list-unstyled components">
                 <li>
-                    <a href="paketeak.html">Pakete entrega</a>
+                    <a href="paketeak.php">Pakete entrega</a>
                 </li>
                 <li>
                     <a href="perfila.php">Perfila</a>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"" href="img/logo erronka3.png" />
     <title>pakAG Saioa Hasi</title>
     <style>
         body {
@@ -12,7 +13,7 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('/public/img/pakAG_fondo_login.jpg');
+            background-image: url('./img/pakAG_fondo_login.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -22,6 +23,8 @@
             background-color: rgba(0, 0, 0, 0);
             padding: 20px;
             border-radius: 10px;
+            color:white;
+            background-image: linear-gradient(to bottom, red, blue);
         }
         button {
             padding: 10px 20px;

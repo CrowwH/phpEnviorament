@@ -153,3 +153,16 @@ body{
     border-color:black !important;
     margin:5px;
 }
+.custom-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-btn:hover {
+    background-color: #0056b3;
+    color:white;
+}

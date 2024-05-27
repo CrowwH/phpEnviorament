@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $herria = $_POST['herria'];
     $langile_mota = $_POST['langile_mota'] ??'';
 
-    $sql = "UPDATE Langileak SET 
+    $sql = "UPDATE langileak SET 
             erabiltzailea = '$erabiltzailea', 
             pasahitza = '$pass', 
             izena = '$izena', 

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pasahitza = password_hash($_POST['pasahitza'], PASSWORD_BCRYPT);
 
         // Ziurtatu langile id-a existitzen den
-        $sql = "SELECT * FROM Langileak WHERE id_Langilea = ?";
+        $sql = "SELECT * FROM langileak WHERE id_Langilea = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             // Langile id-a existitzen badu taula berritu
-            $update_sql = "UPDATE Langileak SET erabiltzailea = ?, pasahitza = ? WHERE id_Langilea = ?";
+            $update_sql = "UPDATE langileak SET erabiltzailea = ?, pasahitza = ? WHERE id_Langilea = ?";
             $update_stmt = $conn->prepare($update_sql);
             $update_stmt->bind_param("ssi", $erabiltzailea, $pasahitza, $id);
 
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        $sql = "SELECT * FROM Langileak WHERE erabiltzailea=?";
+        $sql = "SELECT * FROM langileak WHERE erabiltzailea=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $erabiltzailea);
         $stmt->execute();
@@ -81,7 +81,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="eu">
 
@@ -90,8 +89,8 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pakAG Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon"" href="public\assets\img\logo erronka3.png" />
-    <link rel="stylesheet" href="assets/css/estiloak.css">
+    <link rel="shortcut icon"" href="img/logo erronka3.png" />
+    <link rel="stylesheet" href="estiloak.css">
 </head>
 
 <body>
@@ -142,6 +141,6 @@ $conn->close();
             </div>
         </div>
     </main>
-    <script src="assets/js/scripta.js"></script>
+    <script src="./js/scripta.js"></script>
 </body>
 </html>
