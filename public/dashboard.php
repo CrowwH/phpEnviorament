@@ -1,5 +1,5 @@
 <?php
-// Conexión a la base de datos (suponiendo que ya tienes la conexión establecida)
+// Datu-baserako konexioa (baldin eta konexioa ezarrita badaukazu)
 session_start();
 
 $zerbitzaria = "mysql";
@@ -13,35 +13,35 @@ if ($conn->connect_error) {
     die("<script>alert('Konexioak huts egin du: " . $conn->connect_error . "');</script>");
 }
 
-// Consultas SQL para obtener los datos requeridos
+// Eskatutako datuak lortzeko SQL kontsultak
 $query_pakete_kantitatea = "SELECT COUNT(*) AS total FROM paketea";
 $query_banatutako_paketeak = "SELECT COUNT(*) AS total FROM paketea WHERE entregatze_data IS NOT NULL AND entregatze_data <= CURDATE()";
 $query_hilean_banatutako_paketeak = "SELECT COUNT(*) AS total FROM paketea WHERE MONTH(entregatze_data) = MONTH(CURRENT_DATE())";
 $query_entregatu_beharreko_paketeak = "SELECT COUNT(*) AS entregatu_beharreko_paketeak FROM paketea WHERE id_langilea=2";
 
-// Ejecutar las consultas
+// Kontsultak gauzatzea
 $resultado_pakete_kantitatea = $conn->query($query_pakete_kantitatea);
 $resultado_banatutako_paketeak = $conn->query($query_banatutako_paketeak);
 $resultado_hilean_banatutako_paketeak = $conn->query($query_hilean_banatutako_paketeak);
 $result_entregatu_beharreko_paketeak = $conn->query($query_entregatu_beharreko_paketeak);
 
-// Verificar errores en las consultas
+// Kontsultetan akatsak daudela egiaztatzea
 if (!$resultado_pakete_kantitatea || !$resultado_banatutako_paketeak || !$resultado_hilean_banatutako_paketeak || !$result_entregatu_beharreko_paketeak) {
     die("<script>alert('Errorea gertatu da konsultak egiten: " . $conn->error . "');</script>");
 }
 
-// Obtener los valores
+// Balioak lortu
 $pakete_kantitatea = $resultado_pakete_kantitatea->fetch_assoc()["total"];
 $banatutako_paketeak = $resultado_banatutako_paketeak->fetch_assoc()["total"];
 $hilean_banatutako_paketeak = $resultado_hilean_banatutako_paketeak->fetch_assoc()["total"];
 $row_entregatu_beharreko_paketeak = $result_entregatu_beharreko_paketeak->fetch_assoc();
 
-// Cerrar resultados
+// Emaitzak itxi
 $resultado_pakete_kantitatea->close();
 $resultado_banatutako_paketeak->close();
 $resultado_hilean_banatutako_paketeak->close();
 $result_entregatu_beharreko_paketeak->close();
-// Cerrar la conexión
+// Konexioa itxi
 $conn->close();
 ?>
 
@@ -114,35 +114,35 @@ $conn->close();
                     <div class="col-lg-12 mb-4">
                         <marquee behavior="scroll" direction="left" scrollamount="6">
                             <?php
-                            // Obtén el pronóstico del tiempo utilizando la API de OpenWeatherMap
-                            $api_key = 'c6d20a1dfec83e4a941b1b14332c0e5e'; // Reemplaza 'TU_CLAVE_DE_API' con tu clave de API
-                            $city_name = 'Tolosa'; // Reemplaza 'NOMBRE_DE_LA_CIUDAD' con el nombre de la ciudad que deseas obtener el pronóstico
+                            // Lortu denboraren pronostikoa OpenWeatherMap-eko APIa erabiliz
+                            $api_key = 'c6d20a1dfec83e4a941b1b14332c0e5e';
+                            $city_name = 'Tolosa';
                             $api_url = "http://api.openweathermap.org/data/2.5/forecast?q=$city_name&appid=$api_key&units=metric";
                             $response = file_get_contents($api_url);
                             $data = json_decode($response, true);
 
-                            // Verifica si se obtuvo una respuesta válida
+                            //Egiaztatu baliozko erantzunik jaso den
                             if ($data && isset($data['list'])) {
-                                // Extrae la información del pronóstico para los próximos días
+                                // Atera hurrengo egunetarako iragarpenaren informazioa
                                 $weather_forecast = [];
                                 foreach ($data['list'] as $item) {
-                                    $date = date('l', strtotime($item['dt_txt'])); // Obtén el día de la semana
-                                    $weather_description = $item['weather'][0]['description']; // Obtén la descripción del tiempo
-                                    $temperature = $item['main']['temp']; // Obtén la temperatura
+                                    $date = date('l', strtotime($item['dt_txt']));
+                                    $weather_description = $item['weather'][0]['description'];
+                                    $temperature = $item['main']['temp'];
                                     $weather_forecast[$date] = [
                                         'description' => $weather_description,
                                         'temperature' => $temperature
                                     ];
                                 }
 
-                                // Muestra el pronóstico del tiempo
+                                // Eguraldiaren pronostikoa erakusten du
                                 echo '<marquee behavior="scroll" direction="left" scrollamount="4">';
                                 foreach ($weather_forecast as $day => $forecast) {
                                     echo "$day: " . $forecast['description'] . ", Temp: " . $forecast['temperature'] . "°C | ";
                                 }
                                 echo '</marquee>';
                             } else {
-                                // Muestra un mensaje de error si no se pudo obtener el pronóstico del tiempo
+                                // Errore mezu bat erakusten du ezin izan bada denboraren pronostikoa lortu
                                 echo 'No se pudo obtener el pronóstico del tiempo.';
                             }
                             ?>

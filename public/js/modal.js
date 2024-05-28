@@ -14,7 +14,7 @@ function saveReason() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert("Inzidentzia jasota: " + reason);
-            closeReasonModal(); // Cerrar el modal después de guardar la razón
+            closeReasonModal(); // Modala itxi arrazoia gorde ondoren
         }
     };
     xhr.send("reason=" + reason);

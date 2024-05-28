@@ -1,21 +1,21 @@
 <?php
 session_start();
 
-// Establecer la conexión a la base de datos (reemplaza los valores según tu configuración)
+// Datu-baserako konexioa ezartzea (aldatu balioak zure konfigurazioaren arabera)
 $servername = "mysql";
 $username = "root";
 $password = "root";
 $database = "paketeria";
 
-// Crear conexión
+// Konexioa sortu
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Verificar conexión
+// Konexioa berifikatu
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
 
-// Manejar el almacenamiento de paquetes en progreso
+// Aurrera doazen paketeen biltegiratzea maneiatzea
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['startDelivery'])) {
         $packageId = $_POST['id_Paketea'];
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     if (isset($_POST['cancelDelivery'])) {
         $packageId = $_POST['id_Paketea'];
-        $reason = $_POST['reason'];
+        $reason = $_POST['iruzkinak'];
         $stmt = $conn->prepare("UPDATE paketea SET iruzkinak = ?, egoera = 'dezeztatu' WHERE id_Paketea = ?");
         $stmt->bind_param("si", $reason, $packageId);
         $stmt->execute();
@@ -134,11 +134,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h2>Abian dagoen Paketea</h2>
             <div id="in-progress-package">
                 <?php
-                // Verificar si hay un paquete en progreso en la sesión
+                // Saioan aurrera doan pakete bat dagoen egiaztatzea
                 if (isset($_SESSION['inProgressPackage'])) {
                     $packageId = $_SESSION['inProgressPackage'];
 
-                    // Obtener los detalles del paquete en progreso
+                    // Aurrera doan paketearen xehetasunak lortu
                     $stmt = $conn->prepare("SELECT * FROM paketea WHERE id_Paketea = ?");
                     $stmt->bind_param("i", $packageId);
                     $stmt->execute();
@@ -158,163 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <h2>Entregatutako paketeak</h2>
             <div id="delivered-packages"></div>
         </div>
-        <script>
-            // Obtener todos los botones de paquetes
-            const buttons = document.querySelectorAll('.package-btn');
-
-            // Obtener elementos del DOM
-            const packageInfoDiv = document.getElementById('package-info');
-            const packageDetails = document.getElementById('package-details');
-            const hideInfoBtn = document.getElementById('hide-info-btn');
-            const startDeliveryBtn = document.getElementById('start-delivery-btn');
-            const deliveryCompletedBtn = document.getElementById('delivery-completed-btn');
-            const cancelDeliveryBtn = document.getElementById('cancel-delivery-btn');
-            const inProgressPackageDiv = document.getElementById('in-progress-package');
-            const deliveredPackagesDiv = document.getElementById('delivered-packages');
-
-            // Variable para almacenar la información del paquete actual
-            let currentPackageInfo = null;
-            let currentPackageButton = null;
-
-            // Agregar un evento de clic a cada botón de paquete
-            buttons.forEach(button => {
-                button.addEventListener('click', function () {
-                    // Obtener la información del paquete del atributo data-info
-                    const info = JSON.parse(this.getAttribute('data-info'));
-                    currentPackageInfo = info; // Guardar la información del paquete actual
-                    currentPackageButton = this; // Guardar el botón actual
-
-                    // Mostrar la información del paquete en el div
-                    packageDetails.innerHTML =
-                        '<p>Pakete ID-a: ' + info.id_Paketea + '</p>' +
-                        '<p>Entregatze Helbidea: ' + info.entregatze_helbidea + '</p>' +
-                        '<p>Entregatze Data: ' + info.entregatze_data + '</p>';
-
-                    // Hacer visible el div de información del paquete
-                    packageInfoDiv.style.display = 'block';
-                });
-            });
-
-            // Evento para el botón "Ikusteari Utzi"
-            hideInfoBtn.addEventListener('click', function () {
-                packageInfoDiv.style.display = 'none';
-                currentPackageInfo = null; // Limpiar la información del paquete actual
-                currentPackageButton = null; // Limpiar el botón actual
-            });
-
-            // Evento para el botón "Banatu"
-            startDeliveryBtn.addEventListener('click', function () {
-                if (currentPackageInfo && currentPackageButton) {
-                    // Crear un nuevo botón con el mismo estilo y contenido que el botón original
-                    const newButton = document.createElement('button');
-                    newButton.className = currentPackageButton.className; // Copiar clase
-                    newButton.innerHTML = currentPackageButton.innerHTML; // Copiar contenido
-                    newButton.setAttribute('data-info', currentPackageButton.getAttribute('data-info')); // Copiar datos
-
-                    // Agregar funcionalidad para entregar el paquete desde "Abian dagoen paketea"
-                    newButton.addEventListener('click', function () {
-                        currentPackageInfo = JSON.parse(this.getAttribute('data-info'));
-                        currentPackageButton = this;
-                        packageDetails.innerHTML =
-                            '<p>Pakete ID-a: ' + currentPackageInfo.id_Paketea + '</p>' +
-                            '<p>Entregatze Helbidea: ' + currentPackageInfo.entregatze_helbidea + '</p>' +
-                            '<p>Entregatze Data: ' + currentPackageInfo.entregatze_data + '</p>';
-                        packageInfoDiv.style.display = 'block';
-                    });
-
-                    // Mover el nuevo botón al div de "Abian dagoen Paketea"
-                    inProgressPackageDiv.innerHTML = ''; // Limpiar el contenido anterior
-                    inProgressPackageDiv.appendChild(newButton);
-
-                    // Eliminar el botón original del div de "Banatu beharreko paketeak"
-                    currentPackageButton.remove();
-
-                    // Ocultar el div de información del paquete
-                    packageInfoDiv.style.display = 'none';
-                    currentPackageInfo = null; // Limpiar la información del paquete actual
-                    currentPackageButton = null; // Limpiar el botón actual
-                }
-            });
-
-            // Evento para el botón "Entregatu"
-            deliveryCompletedBtn.addEventListener('click', function () {
-                if (currentPackageInfo && currentPackageButton) {
-                    // Actualizar el estado del paquete en la base de datos
-                    fetch('paketeak.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: 'completeDelivery=true&id_Paketea=' + currentPackageInfo.id_Paketea
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.status === 'success') {
-                                // Crear un nuevo botón con el mismo estilo y contenido que el botón original
-                                const newButton = document.createElement('button');
-                                newButton.className = currentPackageButton.className; // Copiar clase
-                                newButton.innerHTML = currentPackageButton.innerHTML; // Copiar contenido
-                                newButton.setAttribute('data-info', currentPackageButton.getAttribute('data-info')); // Copiar datos
-
-                                // Mover el nuevo botón al div de "Entregatutako paketeak"
-                                deliveredPackagesDiv.appendChild(newButton);
-
-                                // Eliminar el botón original del div de "Banatu beharreko paketeak" o "Abian dagoen Paketea"
-                                currentPackageButton.remove();
-
-                                // Ocultar el div de información del paquete
-                                packageInfoDiv.style.display = 'none';
-                                currentPackageInfo = null; // Limpiar la información del paquete actual
-                                currentPackageButton = null; // Limpiar el botón actual
-                            } else {
-                                alert('Errorea paketea entregatzeko.');
-                            }
-                        });
-                }
-            });
-
-            // Evento para el botón "Cancelatu"
-            cancelDeliveryBtn.addEventListener('click', function () {
-                if (currentPackageInfo) {
-                    openReasonModal();
-                }
-            });
-
-            function openReasonModal() {
-                document.getElementById('myModal').style.display = "block";
-            }
-
-            function closeReasonModal() {
-                document.getElementById('myModal').style.display = "none";
-            }
-
-            function saveReason() {
-                var reason = document.getElementById('reason').value;
-                var packageId = currentPackageInfo.id_Paketea;
-                fetch('paketeak.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'cancelDelivery=true&id_Paketea=' + packageId + '&reason=' + encodeURIComponent(reason)
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'success') {
-                            alert("Inzidentzia jasota: " + reason);
-                            closeReasonModal(); // Cerrar el modal después de guardar la razón
-                            // Eliminar el botón del paquete cancelado
-                            currentPackageButton.remove();
-                            // Ocultar el div de información del paquete
-                            packageInfoDiv.style.display = 'none';
-                            currentPackageInfo = null; // Limpiar la información del paquete actual
-                            currentPackageButton = null; // Limpiar el botón actual
-                        } else {
-                            alert('Errorea paketea cancelatzeko.');
-                        }
-                    });
-            }
-        </script>
+        <script src="js/infopakete.js"></script>
     </div>
 
     <!---Modal--->
@@ -328,5 +172,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="js/scripta.js"></script>
     <script src="js/modal.js"></script>
 </body>
-
 </html>
