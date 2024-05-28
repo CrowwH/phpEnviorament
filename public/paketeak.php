@@ -19,15 +19,40 @@ if ($conn->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['startDelivery'])) {
         $packageId = $_POST['id_Paketea'];
-        // Almacenar el paquete en progreso en la sesión
         $_SESSION['inProgressPackage'] = $packageId;
         echo json_encode(['status' => 'success']);
         exit;
     }
     if (isset($_POST['removeInProgress'])) {
-        // Eliminar el paquete en progreso de la sesión
         unset($_SESSION['inProgressPackage']);
         echo json_encode(['status' => 'success']);
+        exit;
+    }
+    if (isset($_POST['completeDelivery'])) {
+        $packageId = $_POST['id_Paketea'];
+        $stmt = $conn->prepare("UPDATE paketea SET egoera = 'entregatuta' WHERE id_Paketea = ?");
+        $stmt->bind_param("i", $packageId);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            echo json_encode(['status' => 'success']);
+        } else {
+            echo json_encode(['status' => 'error']);
+        }
+        $stmt->close();
+        exit;
+    }
+    if (isset($_POST['cancelDelivery'])) {
+        $packageId = $_POST['id_Paketea'];
+        $reason = $_POST['reason'];
+        $stmt = $conn->prepare("UPDATE paketea SET iruzkinak = ?, egoera = 'dezeztatu' WHERE id_Paketea = ?");
+        $stmt->bind_param("si", $reason, $packageId);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            echo json_encode(['status' => 'success']);
+        } else {
+            echo json_encode(['status' => 'error']);
+        }
+        $stmt->close();
         exit;
     }
 }
@@ -75,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id_langilea = $_SESSION['id_Langilea'];
 
             // SQL kontsulta, erabiltzailearen paketeak adierazpen prestatuak erabiliz lortzeko
-            $stmt = $conn->prepare("SELECT * FROM paketea WHERE id_Langilea = ?");
+            $stmt = $conn->prepare("SELECT * FROM paketea WHERE id_Langilea = ? AND egoera = 'abian'");
             $stmt->bind_param("i", $id_langilea);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -100,7 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h3>Paketearen Deskribapena:</h3>
                 <p id="package-details"></p>
                 <button id="hide-info-btn">Ikusteari Utzi</button>
-                <button id="start-delivery-btn" class="btn btn-onway">Banatu</button>
+                <button id="start-delivery-btn" class="btn btn-onway">Abian</button>
+                <button id="delivery-completed-btn" class="btn btn-success">Entregatu</button>
+                <button id="cancel-delivery-btn" class="btn btn-danger">Dezeztatu</button>
             </div>
         </div>
         <div class="card">
@@ -127,6 +154,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ?>
             </div>
         </div>
+        <div class="card">
+            <h2>Entregatutako paketeak</h2>
+            <div id="delivered-packages"></div>
+        </div>
         <script>
             // Obtener todos los botones de paquetes
             const buttons = document.querySelectorAll('.package-btn');
@@ -136,7 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             const packageDetails = document.getElementById('package-details');
             const hideInfoBtn = document.getElementById('hide-info-btn');
             const startDeliveryBtn = document.getElementById('start-delivery-btn');
+            const deliveryCompletedBtn = document.getElementById('delivery-completed-btn');
+            const cancelDeliveryBtn = document.getElementById('cancel-delivery-btn');
             const inProgressPackageDiv = document.getElementById('in-progress-package');
+            const deliveredPackagesDiv = document.getElementById('delivered-packages');
 
             // Variable para almacenar la información del paquete actual
             let currentPackageInfo = null;
@@ -177,6 +211,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     newButton.innerHTML = currentPackageButton.innerHTML; // Copiar contenido
                     newButton.setAttribute('data-info', currentPackageButton.getAttribute('data-info')); // Copiar datos
 
+                    // Agregar funcionalidad para entregar el paquete desde "Abian dagoen paketea"
+                    newButton.addEventListener('click', function () {
+                        currentPackageInfo = JSON.parse(this.getAttribute('data-info'));
+                        currentPackageButton = this;
+                        packageDetails.innerHTML =
+                            '<p>Pakete ID-a: ' + currentPackageInfo.id_Paketea + '</p>' +
+                            '<p>Entregatze Helbidea: ' + currentPackageInfo.entregatze_helbidea + '</p>' +
+                            '<p>Entregatze Data: ' + currentPackageInfo.entregatze_data + '</p>';
+                        packageInfoDiv.style.display = 'block';
+                    });
+
                     // Mover el nuevo botón al div de "Abian dagoen Paketea"
                     inProgressPackageDiv.innerHTML = ''; // Limpiar el contenido anterior
                     inProgressPackageDiv.appendChild(newButton);
@@ -190,10 +235,86 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     currentPackageButton = null; // Limpiar el botón actual
                 }
             });
+
+            // Evento para el botón "Entregatu"
+            deliveryCompletedBtn.addEventListener('click', function () {
+                if (currentPackageInfo && currentPackageButton) {
+                    // Actualizar el estado del paquete en la base de datos
+                    fetch('paketeak.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: 'completeDelivery=true&id_Paketea=' + currentPackageInfo.id_Paketea
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Crear un nuevo botón con el mismo estilo y contenido que el botón original
+                                const newButton = document.createElement('button');
+                                newButton.className = currentPackageButton.className; // Copiar clase
+                                newButton.innerHTML = currentPackageButton.innerHTML; // Copiar contenido
+                                newButton.setAttribute('data-info', currentPackageButton.getAttribute('data-info')); // Copiar datos
+
+                                // Mover el nuevo botón al div de "Entregatutako paketeak"
+                                deliveredPackagesDiv.appendChild(newButton);
+
+                                // Eliminar el botón original del div de "Banatu beharreko paketeak" o "Abian dagoen Paketea"
+                                currentPackageButton.remove();
+
+                                // Ocultar el div de información del paquete
+                                packageInfoDiv.style.display = 'none';
+                                currentPackageInfo = null; // Limpiar la información del paquete actual
+                                currentPackageButton = null; // Limpiar el botón actual
+                            } else {
+                                alert('Errorea paketea entregatzeko.');
+                            }
+                        });
+                }
+            });
+
+            // Evento para el botón "Cancelatu"
+            cancelDeliveryBtn.addEventListener('click', function () {
+                if (currentPackageInfo) {
+                    openReasonModal();
+                }
+            });
+
+            function openReasonModal() {
+                document.getElementById('myModal').style.display = "block";
+            }
+
+            function closeReasonModal() {
+                document.getElementById('myModal').style.display = "none";
+            }
+
+            function saveReason() {
+                var reason = document.getElementById('reason').value;
+                var packageId = currentPackageInfo.id_Paketea;
+                fetch('paketeak.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'cancelDelivery=true&id_Paketea=' + packageId + '&reason=' + encodeURIComponent(reason)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert("Inzidentzia jasota: " + reason);
+                            closeReasonModal(); // Cerrar el modal después de guardar la razón
+                            // Eliminar el botón del paquete cancelado
+                            currentPackageButton.remove();
+                            // Ocultar el div de información del paquete
+                            packageInfoDiv.style.display = 'none';
+                            currentPackageInfo = null; // Limpiar la información del paquete actual
+                            currentPackageButton = null; // Limpiar el botón actual
+                        } else {
+                            alert('Errorea paketea cancelatzeko.');
+                        }
+                    });
+            }
         </script>
-        <div class="card">
-            <h2>Entregatutako paketeak</h2>
-        </div>
     </div>
 
     <!---Modal--->
@@ -205,28 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <button onclick="saveReason()" class="btn custom-btn">Gorde</button>
     </div>
     <script src="js/scripta.js"></script>
-    <script>
-        function openReasonModal() {
-            document.getElementById('myModal').style.display = "block";
-        }
-
-        function closeReasonModal() {
-            document.getElementById('myModal').style.display = "none";
-        }
-
-        function saveReason() {
-            var reason = document.getElementById('reason').value;
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", "save_reason.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    alert("Inzidentzia jasota: " + reason);
-                }
-            };
-            xhr.send("reason=" + reason);
-        }
-    </script>
+    <script src="js/modal.js"></script>
 </body>
 
 </html>
