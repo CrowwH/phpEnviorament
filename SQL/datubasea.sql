@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2024 a las 16:02:49
+-- Tiempo de generación: 28-05-2024 a las 09:52:12
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 ;
 /*!40101 SET NAMES utf8mb4 */
 ;
+CREATE SCHEMA IF NOT EXISTS `paketeria` DEFAULT CHARACTER SET utf8;
+USE `paketeria`;
 --
--- Base de datos: `Paketea`
+-- Base de datos: `paketeria`
 --
 -- --------------------------------------------------------
 --
@@ -64,25 +66,29 @@ VALUES (
     );
 -- --------------------------------------------------------
 --
--- Estructura de tabla para la tabla `langileak`
+-- Estructura de tabla para la tabla `langilea`
 --
-CREATE TABLE `langileak` (
-    `id_Langileak` int(11) NOT NULL,
+CREATE TABLE `langilea` (
+    `id_Langilea` int(11) NOT NULL,
     `izena` varchar(45) NOT NULL,
     `abizena` varchar(45) NOT NULL,
     `nan` varchar(45) NOT NULL,
+    `erabiltzailea` varchar(10) DEFAULT NULL,
+    `pasahitza` varchar(8) DEFAULT NULL,
     `herria` varchar(45) NOT NULL,
     `telefonoa` varchar(9) DEFAULT NULL,
     `langile_mota` varchar(45) NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 --
--- Volcado de datos para la tabla `langileak`
+-- Volcado de datos para la tabla `langilea`
 --
-INSERT INTO `langileak` (
-        `id_Langileak`,
+INSERT INTO `langilea` (
+        `id_Langilea`,
         `izena`,
         `abizena`,
         `nan`,
+        `erabiltzailea`,
+        `pasahitza`,
         `herria`,
         `telefonoa`,
         `langile_mota`
@@ -92,6 +98,8 @@ VALUES (
         'Kike',
         'Garcia',
         '74563214M',
+        NULL,
+        NULL,
         'Tolosa',
         '630958412',
         'Banatzailea'
@@ -101,6 +109,8 @@ VALUES (
         'Alberto',
         'Martinez',
         '7845120G',
+        NULL,
+        NULL,
         'Hernani',
         NULL,
         'Kudeatzailea'
@@ -110,6 +120,8 @@ VALUES (
         'Aitor',
         'García',
         '23420842H',
+        NULL,
+        NULL,
         'Abaltzisketa',
         '612345678',
         ''
@@ -119,6 +131,8 @@ VALUES (
         'María',
         'Etxeberria',
         '35417891J',
+        NULL,
+        NULL,
         'Aduna',
         '622345678',
         ''
@@ -128,6 +142,8 @@ VALUES (
         'Iker',
         'Martínez',
         '47415930K',
+        NULL,
+        NULL,
         'Aizarnazabal',
         '632345678',
         ''
@@ -137,6 +153,8 @@ VALUES (
         'Juan',
         'Garate',
         '59413849L',
+        NULL,
+        NULL,
         'Albiztur',
         '642345678',
         ''
@@ -146,6 +164,8 @@ VALUES (
         'Unai',
         'López',
         '71412878M',
+        NULL,
+        NULL,
         'Alegia',
         '652345678',
         ''
@@ -155,6 +175,8 @@ VALUES (
         'Ana',
         'Urrutia',
         '83411777N',
+        NULL,
+        NULL,
         'Alkiza',
         '662345678',
         ''
@@ -164,6 +186,8 @@ VALUES (
         'Amaia',
         'Sánchez',
         '95410666P',
+        NULL,
+        NULL,
         'Altzaga',
         '672345678',
         ''
@@ -173,6 +197,8 @@ VALUES (
         'Luis',
         'Zabala',
         '17409555Q',
+        NULL,
+        NULL,
         'Altzo',
         '682345678',
         ''
@@ -182,6 +208,8 @@ VALUES (
         'Nerea',
         'Pérez',
         '29408444R',
+        NULL,
+        NULL,
         'Amezketa',
         '692345678',
         ''
@@ -191,6 +219,8 @@ VALUES (
         'Elena',
         'Mendia',
         '41407333S',
+        NULL,
+        NULL,
         'Andoain',
         '602345678',
         ''
@@ -200,6 +230,8 @@ VALUES (
         'Jon',
         'González',
         '53406222T',
+        NULL,
+        NULL,
         'Anoeta',
         '712345678',
         ''
@@ -209,6 +241,8 @@ VALUES (
         'Ane',
         'Fernández',
         '65405111U',
+        NULL,
+        NULL,
         'Antzuola',
         '722345678',
         ''
@@ -218,6 +252,8 @@ VALUES (
         'Asier',
         'Hernández',
         '77404000V',
+        NULL,
+        NULL,
         'Arama',
         '732345678',
         ''
@@ -227,6 +263,8 @@ VALUES (
         'Maite',
         'Gómez',
         '89403999W',
+        NULL,
+        NULL,
         'Aretxabaleta',
         '742345678',
         ''
@@ -236,6 +274,8 @@ VALUES (
         'Ibai',
         'Sanz',
         '01402888X',
+        NULL,
+        NULL,
         'Asteasu',
         '752345678',
         ''
@@ -245,6 +285,8 @@ VALUES (
         'Leire',
         'Moreno',
         '13401777Y',
+        NULL,
+        NULL,
         'Astigarraga',
         '762345678',
         ''
@@ -254,6 +296,8 @@ VALUES (
         'Eneko',
         'Alvarez',
         '25401666Z',
+        NULL,
+        NULL,
         'Ataun',
         '772345678',
         ''
@@ -263,6 +307,8 @@ VALUES (
         'Eider',
         'Jiménez',
         '37400555A',
+        NULL,
+        NULL,
         'Aia',
         '782345678',
         ''
@@ -272,6 +318,8 @@ VALUES (
         'Mikel',
         'Ortega',
         '49399444B',
+        NULL,
+        NULL,
         'Azkoitia',
         '792345678',
         ''
@@ -281,6 +329,8 @@ VALUES (
         'Ane',
         'Iglesias',
         '61398333C',
+        NULL,
+        NULL,
         'Aztpeitia',
         '802345678',
         ''
@@ -290,6 +340,8 @@ VALUES (
         'Iñigo',
         'Ruíz',
         '73397222D',
+        NULL,
+        NULL,
         'Baliarrain',
         '812345678',
         ''
@@ -299,6 +351,8 @@ VALUES (
         'Maider',
         'Gutiérrez',
         '85396111E',
+        NULL,
+        NULL,
         'Beasain',
         '822345678',
         ''
@@ -308,6 +362,8 @@ VALUES (
         'Ander',
         'Herrero',
         '97395000F',
+        NULL,
+        NULL,
         'Beizema',
         '832345678',
         ''
@@ -317,6 +373,8 @@ VALUES (
         'Miren',
         'Serrano',
         '09394999G',
+        NULL,
+        NULL,
         'Belauntza',
         '842345678',
         ''
@@ -326,6 +384,8 @@ VALUES (
         'Ekaitz',
         'Vidal',
         '21393888H',
+        NULL,
+        NULL,
         'Berastegi',
         '852345678',
         ''
@@ -335,6 +395,8 @@ VALUES (
         'Iraitz',
         'Blanco',
         '33392777I',
+        NULL,
+        NULL,
         'Berrobi',
         '862345678',
         ''
@@ -344,6 +406,8 @@ VALUES (
         'Maialen',
         'Romero',
         '45391666J',
+        NULL,
+        NULL,
         'Bidania-Goiatz',
         '872345678',
         ''
@@ -353,6 +417,8 @@ VALUES (
         'Gorka',
         'Hidalgo',
         '57390555K',
+        NULL,
+        NULL,
         'Zegama',
         '882345678',
         ''
@@ -362,6 +428,8 @@ VALUES (
         'Naiara',
         'Marín',
         '69389444L',
+        NULL,
+        NULL,
         'Zerain',
         '892345678',
         ''
@@ -371,6 +439,8 @@ VALUES (
         'Xabier',
         'León',
         '81388333M',
+        NULL,
+        NULL,
         'Zestoa',
         '902345678',
         ''
@@ -380,6 +450,8 @@ VALUES (
         'Ekiñe',
         'Pascual',
         '93387222N',
+        NULL,
+        NULL,
         'Zizurkil',
         '912345678',
         ''
@@ -389,6 +461,8 @@ VALUES (
         'Irantzu',
         'Pastor',
         '05386111O',
+        NULL,
+        NULL,
         'Deba',
         '922345678',
         ''
@@ -398,6 +472,8 @@ VALUES (
         'Koldo',
         'Vega',
         '17385000P',
+        NULL,
+        NULL,
         'Eibar',
         '932345678',
         ''
@@ -407,6 +483,8 @@ VALUES (
         'Aitziber',
         'Carmona',
         '29383899Q',
+        NULL,
+        NULL,
         'Elduain',
         '942345678',
         ''
@@ -416,6 +494,8 @@ VALUES (
         'Urko',
         'Ferrer',
         '41382788R',
+        NULL,
+        NULL,
         'Elgoibar',
         '952345678',
         ''
@@ -425,6 +505,8 @@ VALUES (
         'Mikel',
         'Reyes',
         '53381677S',
+        NULL,
+        NULL,
         'Elgeta',
         '962345678',
         ''
@@ -434,6 +516,8 @@ VALUES (
         'Iker',
         'Moya',
         '65380566T',
+        NULL,
+        NULL,
         'Eskoriatza',
         '972345678',
         ''
@@ -443,6 +527,8 @@ VALUES (
         'Eneko',
         'Durán',
         '77379455U',
+        NULL,
+        NULL,
         'Ezkio-Itsaso',
         '982345678',
         ''
@@ -452,6 +538,8 @@ VALUES (
         'Ane',
         'Benítez',
         '89378344V',
+        NULL,
+        NULL,
         'Hondarribi',
         '992345678',
         ''
@@ -461,6 +549,8 @@ VALUES (
         'Iñaki',
         'Gil',
         '01377233W',
+        NULL,
+        NULL,
         'Gaintza',
         '602345678',
         ''
@@ -470,6 +560,8 @@ VALUES (
         'Marta',
         'Soto',
         '13376122X',
+        NULL,
+        NULL,
         'Gabiria',
         '612345678',
         ''
@@ -479,6 +571,8 @@ VALUES (
         'Iratxe',
         'Rey',
         '25375011Y',
+        NULL,
+        NULL,
         'Gaztelu',
         '622345678',
         ''
@@ -488,6 +582,8 @@ VALUES (
         'Arkaitz',
         'Dominguez',
         '37374900Z',
+        NULL,
+        NULL,
         'Getaria',
         '632345678',
         ''
@@ -497,6 +593,8 @@ VALUES (
         'Ainhoa',
         'Ortega',
         '49373799A',
+        NULL,
+        NULL,
         'Hernani',
         '642345678',
         ''
@@ -506,6 +604,8 @@ VALUES (
         'Unai',
         'Crespo',
         '61372688B',
+        NULL,
+        NULL,
         'Hernialde',
         '652345678',
         ''
@@ -515,6 +615,8 @@ VALUES (
         'Ane',
         'Muñoz',
         '73371577C',
+        NULL,
+        NULL,
         'Ikaztegieta',
         '662345678',
         ''
@@ -524,6 +626,8 @@ VALUES (
         'Maite',
         'Vázquez',
         '85370466D',
+        NULL,
+        NULL,
         'Idiazabal',
         '672345678',
         ''
@@ -533,6 +637,8 @@ VALUES (
         'Beñat',
         'Rubio',
         '97369355E',
+        NULL,
+        NULL,
         'Irun',
         '682345678',
         ''
@@ -542,6 +648,8 @@ VALUES (
         'Maider',
         'Lorenzo',
         '09368244F',
+        NULL,
+        NULL,
         'Irura',
         '692345678',
         ''
@@ -551,6 +659,8 @@ VALUES (
         'Iker',
         'Molina',
         '21367133G',
+        NULL,
+        NULL,
         'Itsasondo',
         '702345678',
         ''
@@ -560,6 +670,8 @@ VALUES (
         'Eider',
         'Ibáñez',
         '33366022H',
+        NULL,
+        NULL,
         'Larraul',
         '712345678',
         ''
@@ -569,6 +681,8 @@ VALUES (
         'Naroa',
         'Santos',
         '45364911I',
+        NULL,
+        NULL,
         'Lasarte-Oria',
         '722345678',
         ''
@@ -578,6 +692,8 @@ VALUES (
         'Asier',
         'Herrero',
         '57363700J',
+        NULL,
+        NULL,
         'Lazkao',
         '732345678',
         ''
@@ -587,6 +703,8 @@ VALUES (
         'Miren',
         'Vidal',
         '69362599K',
+        NULL,
+        NULL,
         'Leaburu',
         '742345678',
         ''
@@ -596,6 +714,8 @@ VALUES (
         'Ibai',
         'Cruz',
         '81361488L',
+        NULL,
+        NULL,
         'Legazpi',
         '752345678',
         ''
@@ -605,6 +725,8 @@ VALUES (
         'Leire',
         'González',
         '93360377M',
+        NULL,
+        NULL,
         'Legorreta',
         '762345678',
         ''
@@ -614,6 +736,8 @@ VALUES (
         'Ane',
         'Sánchez',
         '05359266N',
+        NULL,
+        NULL,
         'Lezo',
         '772345678',
         ''
@@ -623,6 +747,8 @@ VALUES (
         'Asier',
         'Martín',
         '17358155O',
+        NULL,
+        NULL,
         'Lizartza',
         '782345829',
         ''
@@ -632,6 +758,8 @@ VALUES (
         'Ane',
         'Larrea',
         '11382153N',
+        NULL,
+        NULL,
         'Antzuola',
         '782345678',
         ''
@@ -641,6 +769,8 @@ VALUES (
         'Aitor',
         'Garmendia',
         '22389743O',
+        NULL,
+        NULL,
         'Arama',
         '792345678',
         ''
@@ -650,6 +780,8 @@ VALUES (
         'Maialen',
         'Ibarguren',
         '33389473P',
+        NULL,
+        NULL,
         'Aretxabaleta',
         '802345678',
         ''
@@ -659,6 +791,8 @@ VALUES (
         'Unai',
         'Etxeberria',
         '44382153Q',
+        NULL,
+        NULL,
         'Asteasu',
         '812345678',
         ''
@@ -668,6 +802,8 @@ VALUES (
         'Iker',
         'Larrinaga',
         '55389743R',
+        NULL,
+        NULL,
         'Astigarraga',
         '822345678',
         ''
@@ -677,6 +813,8 @@ VALUES (
         'Miren',
         'Larrañaga',
         '66389473S',
+        NULL,
+        NULL,
         'Ataun',
         '832345678',
         ''
@@ -686,6 +824,8 @@ VALUES (
         'Ekaitz',
         'Izagirre',
         '77382153T',
+        NULL,
+        NULL,
         'Aia',
         '842345678',
         ''
@@ -695,6 +835,8 @@ VALUES (
         'Urko',
         'Aramburu',
         '88389743U',
+        NULL,
+        NULL,
         'Azkoitia',
         '852345678',
         ''
@@ -704,6 +846,8 @@ VALUES (
         'Ane',
         'Landa',
         '99389473V',
+        NULL,
+        NULL,
         'Azpeitia',
         '862345678',
         ''
@@ -713,6 +857,8 @@ VALUES (
         'Maider',
         'Olabarria',
         '10382153W',
+        NULL,
+        NULL,
         'Baliarrain',
         '872345678',
         ''
@@ -722,6 +868,8 @@ VALUES (
         'Beñat',
         'Alberdi',
         '11389743X',
+        NULL,
+        NULL,
         'Beasain',
         '882345678',
         ''
@@ -731,6 +879,8 @@ VALUES (
         'Marta',
         'Beristain',
         '22389473Y',
+        NULL,
+        NULL,
         'Beizema',
         '892345678',
         ''
@@ -740,6 +890,8 @@ VALUES (
         'Iratxe',
         'Zubizarreta',
         '33382153Z',
+        NULL,
+        NULL,
         'Belauntza',
         '902345678',
         ''
@@ -749,6 +901,8 @@ VALUES (
         'Ane',
         'Eizagirre',
         '44389744A',
+        NULL,
+        NULL,
         'Berastegi',
         '912345678',
         ''
@@ -758,6 +912,8 @@ VALUES (
         'Iker',
         'Lertxundi',
         '55389474B',
+        NULL,
+        NULL,
         'Berrobi',
         '922345678',
         ''
@@ -767,6 +923,8 @@ VALUES (
         'Miren',
         'Larrazabal',
         '66382154C',
+        NULL,
+        NULL,
         'Bidania-Goiatz',
         '932345678',
         ''
@@ -776,6 +934,8 @@ VALUES (
         'Ekaitz',
         'Arana',
         '77389744D',
+        NULL,
+        NULL,
         'Zegama',
         '942345678',
         ''
@@ -785,6 +945,8 @@ VALUES (
         'Urko',
         'Zabala',
         '88389474E',
+        NULL,
+        NULL,
         'Zerain',
         '952345678',
         ''
@@ -794,6 +956,8 @@ VALUES (
         'Ane',
         'Irizar',
         '99382154F',
+        NULL,
+        NULL,
         'Zestoa',
         '962345678',
         ''
@@ -803,6 +967,8 @@ VALUES (
         'Maider',
         'Larrinaga',
         '10389744G',
+        NULL,
+        NULL,
         'Zizurkil',
         '972345678',
         ''
@@ -812,6 +978,8 @@ VALUES (
         'Beñat',
         'Arrizabalaga',
         '11389474H',
+        NULL,
+        NULL,
         'Deba',
         '982345678',
         ''
@@ -821,6 +989,8 @@ VALUES (
         'Marta',
         'Ibarra',
         '22382154I',
+        NULL,
+        NULL,
         'Eibar',
         '992345678',
         ''
@@ -830,6 +1000,8 @@ VALUES (
         'Iratxe',
         'González',
         '33389744J',
+        NULL,
+        NULL,
         'Elduain',
         '602345678',
         ''
@@ -839,6 +1011,8 @@ VALUES (
         'Ane',
         'Etxeberria',
         '44389474K',
+        NULL,
+        NULL,
         'Elgoibar',
         '612345678',
         ''
@@ -848,6 +1022,8 @@ VALUES (
         'Iker',
         'Arrieta',
         '55382154L',
+        NULL,
+        NULL,
         'Elgeta',
         '622345678',
         ''
@@ -857,6 +1033,8 @@ VALUES (
         'Miren',
         'Egiguren',
         '66389744M',
+        NULL,
+        NULL,
         'Eskoriatza',
         '632345678',
         ''
@@ -866,6 +1044,8 @@ VALUES (
         'Ekaitz',
         'Lekuona',
         '77389474N',
+        NULL,
+        NULL,
         'Ezkio-Itsaso',
         '642345678',
         ''
@@ -875,6 +1055,8 @@ VALUES (
         'Urko',
         'Arrizabalaga',
         '88382154O',
+        NULL,
+        NULL,
         'Hondarribi',
         '652345678',
         ''
@@ -884,6 +1066,8 @@ VALUES (
         'Ane',
         'Gallastegi',
         '99389744P',
+        NULL,
+        NULL,
         'Gaintza',
         '662345678',
         ''
@@ -893,6 +1077,8 @@ VALUES (
         'Maider',
         'Eizmendi',
         '10389474Q',
+        NULL,
+        NULL,
         'Gabiria',
         '672345678',
         ''
@@ -902,6 +1088,8 @@ VALUES (
         'Beñat',
         'Arana',
         '11382154R',
+        NULL,
+        NULL,
         'Gaztelu',
         '682345678',
         ''
@@ -911,6 +1099,8 @@ VALUES (
         'Marta',
         'Etxeberria',
         '22389744S',
+        NULL,
+        NULL,
         'Getaria',
         '692345678',
         ''
@@ -920,6 +1110,8 @@ VALUES (
         'Iratxe',
         'Arana',
         '33389474T',
+        NULL,
+        NULL,
         'Hernani',
         '702345678',
         ''
@@ -929,6 +1121,8 @@ VALUES (
         'Ane',
         'González',
         '44382154U',
+        NULL,
+        NULL,
         'Hernialde',
         '712345678',
         ''
@@ -938,6 +1132,8 @@ VALUES (
         'Iker',
         'Arrizabalaga',
         '55389744V',
+        NULL,
+        NULL,
         'Ikaztegieta',
         '722345678',
         ''
@@ -947,6 +1143,8 @@ VALUES (
         'Miren',
         'Arrieta',
         '66389474W',
+        NULL,
+        NULL,
         'Idiazabal',
         '732345678',
         ''
@@ -956,6 +1154,8 @@ VALUES (
         'Ekaitz',
         'Etxeberria',
         '77382154X',
+        NULL,
+        NULL,
         'Irun',
         '742345678',
         ''
@@ -965,6 +1165,8 @@ VALUES (
         'Urko',
         'Lekuona',
         '88389744Y',
+        NULL,
+        NULL,
         'Irura',
         '752345678',
         ''
@@ -974,6 +1176,8 @@ VALUES (
         'Ane',
         'Arratibel',
         '99389474Z',
+        NULL,
+        NULL,
         'Itsasondo',
         '762345678',
         ''
@@ -983,6 +1187,8 @@ VALUES (
         'Maider',
         'Olabarria',
         '10382155A',
+        NULL,
+        NULL,
         'Larraul',
         '772345678',
         ''
@@ -992,6 +1198,8 @@ VALUES (
         'Beñat',
         'Alberdi',
         '11389745B',
+        NULL,
+        NULL,
         'Lasarte-Oria',
         '782345678',
         ''
@@ -1001,6 +1209,8 @@ VALUES (
         'Marta',
         'Beristain',
         '22389475C',
+        NULL,
+        NULL,
         'Lazkao',
         '792345678',
         ''
@@ -1010,6 +1220,8 @@ VALUES (
         'Iratxe',
         'Zubizarreta',
         '33382155D',
+        NULL,
+        NULL,
         'Leaburu',
         '802345678',
         ''
@@ -1019,6 +1231,8 @@ VALUES (
         'Ane',
         'Eizagirre',
         '44389745E',
+        NULL,
+        NULL,
         'Legazpi',
         '812345678',
         ''
@@ -1028,6 +1242,8 @@ VALUES (
         'Iker',
         'Lertxundi',
         '55389475F',
+        NULL,
+        NULL,
         'Legorreta',
         '822345678',
         ''
@@ -1037,6 +1253,8 @@ VALUES (
         'Miren',
         'Larrazabal',
         '66382155G',
+        NULL,
+        NULL,
         'Lezo',
         '832345678',
         ''
@@ -1046,6 +1264,8 @@ VALUES (
         'Ekaitz',
         'Arana',
         '77389745H',
+        NULL,
+        NULL,
         'Lizartza',
         '842345678',
         ''
@@ -1055,6 +1275,8 @@ VALUES (
         'Urko',
         'Zabala',
         '88389475I',
+        NULL,
+        NULL,
         'Mendaro',
         '852345678',
         ''
@@ -1064,6 +1286,8 @@ VALUES (
         'Ane',
         'Irizar',
         '99382155J',
+        NULL,
+        NULL,
         'Mutriku',
         '862345678',
         ''
@@ -1073,6 +1297,8 @@ VALUES (
         'Maider',
         'Larrinaga',
         '10389745K',
+        NULL,
+        NULL,
         'Mutiloa',
         '872345678',
         ''
@@ -1082,6 +1308,8 @@ VALUES (
         'Beñat',
         'Arrizabalaga',
         '11389475L',
+        NULL,
+        NULL,
         'Oiartzun',
         '882345678',
         ''
@@ -1092,1019 +1320,1170 @@ VALUES (
 --
 CREATE TABLE `paketea` (
     `id_Paketea` int(11) NOT NULL,
-    `id_Langilea` int(11) NOT NULL,
     `id_Bezeroa` int(11) NOT NULL,
+    `id_Langilea` int(11) NOT NULL,
     `entregatze_helbidea` varchar(50) NOT NULL,
-    `entregatze_data` date NOT NULL,
     `irteera_data` date NOT NULL,
+    `entregatze_data` date NOT NULL,
     `iruzkinak` varchar(45) DEFAULT NULL,
-    `Pisua` double NOT NULL
+    `pisua` double NOT NULL,
+    `egoera` varchar(45) DEFAULT NULL,
+    `data_ordua` datetime(6) DEFAULT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
 --
 -- Volcado de datos para la tabla `paketea`
 --
 INSERT INTO `paketea` (
         `id_Paketea`,
-        `id_Langilea`,
         `id_Bezeroa`,
+        `id_Langilea`,
         `entregatze_helbidea`,
-        `entregatze_data`,
         `irteera_data`,
+        `entregatze_data`,
         `iruzkinak`,
-        `Pisua`
-    )
-VALUES (
-        1,
-        2,
-        2,
-        'Villabona Kale Berria 3',
-        '2024-05-30',
-        '2024-05-29',
-        'Ondoko atean utzi da',
-        19
-    ),
-    (
-        2,
-        1,
-        3,
-        'Iparragire bidea,3',
-        '2024-05-31',
-        '2024-05-30',
-        NULL,
-        20
-    ),
-    (
-        4,
-        5,
-        2,
-        'Avenida Navarra 97, Vitoria-Gasteiz',
-        '2024-12-09',
-        '2024-11-29',
-        '',
-        8.15
-    ),
-    (
-        10,
-        45,
-        2,
-        'Herriko Plaza 7, Durango',
-        '2024-12-14',
-        '2024-12-04',
-        '',
-        7.8
-    ),
-    (
-        11,
-        78,
-        1,
-        'Kale Zaharra 56, Hondarribia',
-        '2024-12-15',
-        '2024-12-05',
-        'Txartela galdu da',
-        6.1
-    ),
-    (
-        12,
-        12,
-        3,
-        'Plaza Mayor 8, Baiona',
-        '2024-12-16',
-        '2024-12-06',
-        '',
-        8.2
-    ),
-    (
-        13,
-        90,
-        2,
-        'Kale Nagusia 34, Donostia',
-        '2024-12-17',
-        '2024-12-07',
-        'Paketea atzera geratu da',
-        5.5
-    ),
-    (
-        14,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2024-12-18',
-        '2024-12-08',
-        '',
-        9.7
-    ),
-    (
-        15,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2024-12-19',
-        '2024-12-09',
-        'Pisua derrigortuta dago',
-        7.4
-    ),
-    (
-        16,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2024-12-20',
-        '2024-12-10',
-        '',
-        6.3
-    ),
-    (
-        17,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2024-12-21',
-        '2024-12-11',
-        '',
-        8.9
-    ),
-    (
-        18,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2024-12-22',
-        '2024-12-12',
-        'Paketea lau orduko lekuan geratu da',
-        5.2
-    ),
-    (
-        19,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2024-12-23',
-        '2024-12-13',
-        '',
-        8.6
-    ),
-    (
-        20,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2024-12-24',
-        '2024-12-14',
-        '',
-        7.1
-    ),
-    (
-        21,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2024-12-25',
-        '2024-12-15',
-        'Ez da inzidentziarik izan',
-        6.4
-    ),
-    (
-        22,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2024-12-26',
-        '2024-12-16',
-        'Paketea laukotean erori da',
-        9.2
-    ),
-    (
-        23,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2024-12-27',
-        '2024-12-17',
-        '',
-        8.7
-    ),
-    (
-        24,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2024-12-28',
-        '2024-12-18',
-        '',
-        7.3
-    ),
-    (
-        25,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2024-12-29',
-        '2024-12-19',
-        '',
-        6.1
-    ),
-    (
-        26,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2024-12-30',
-        '2024-12-20',
-        '',
-        9.4
-    ),
-    (
-        27,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2024-12-31',
-        '2024-12-21',
-        '',
-        5.8
-    ),
-    (
-        28,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-01-01',
-        '2024-12-22',
-        'Txartela behin betiko galdu da',
-        8.3
-    ),
-    (
-        29,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-01-02',
-        '2024-12-23',
-        '',
-        6.9
-    ),
-    (
-        30,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-01-03',
-        '2024-12-24',
-        '',
-        7.2
-    ),
-    (
-        31,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-01-04',
-        '2024-12-25',
-        '',
-        8.1
-    ),
-    (
-        32,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-01-05',
-        '2024-12-26',
-        '',
-        5.7
-    ),
-    (
-        33,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-01-06',
-        '2024-12-27',
-        'Paketea hondoratuta dago',
-        9.3
-    ),
-    (
-        34,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-01-07',
-        '2024-12-28',
-        '',
-        7.6
-    ),
-    (
-        35,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-01-08',
-        '2024-12-29',
-        'Ezin izan da gurutzatu',
-        6.8
-    ),
-    (
-        36,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-01-09',
-        '2024-12-30',
-        '',
-        8.4
-    ),
-    (
-        37,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-01-10',
-        '2024-12-31',
-        '',
-        5.9
-    ),
-    (
-        38,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-01-11',
-        '2025-01-01',
-        '',
-        7.5
-    ),
-    (
-        39,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-01-12',
-        '2025-01-02',
-        '',
-        9.1
-    ),
-    (
-        40,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-01-13',
-        '2025-01-03',
-        '',
-        8.7
-    ),
-    (
-        41,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-01-14',
-        '2025-01-04',
-        'Inertzia larri bat egon da',
-        6.2
-    ),
-    (
-        42,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-01-15',
-        '2025-01-05',
-        '',
-        8.5
-    ),
-    (
-        43,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-01-16',
-        '2025-01-06',
-        '',
-        7.3
-    ),
-    (
-        44,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-01-17',
-        '2025-01-07',
-        '',
-        5.4
-    ),
-    (
-        45,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-01-18',
-        '2025-01-08',
-        '',
-        9.6
-    ),
-    (
-        46,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-01-19',
-        '2025-01-09',
-        '',
-        7.8
-    ),
-    (
-        47,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-01-20',
-        '2025-01-10',
-        '',
-        6.7
-    ),
-    (
-        48,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-01-21',
-        '2025-01-11',
-        '',
-        8.9
-    ),
-    (
-        49,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-01-22',
-        '2025-01-12',
-        '',
-        5.9
-    ),
-    (
-        50,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-01-23',
-        '2025-01-13',
-        '',
-        9.2
-    ),
-    (
-        51,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-01-24',
-        '2025-01-14',
-        '',
-        8.1
-    ),
-    (
-        52,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-01-25',
-        '2025-01-15',
-        '',
-        7.2
-    ),
-    (
-        53,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-01-26',
-        '2025-01-16',
-        'Txartela garbitu da',
-        6.5
-    ),
-    (
-        54,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-01-27',
-        '2025-01-17',
-        '',
-        8.7
-    ),
-    (
-        55,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-01-28',
-        '2025-01-18',
-        '',
-        7.3
-    ),
-    (
-        56,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-01-29',
-        '2025-01-19',
-        '',
-        9.4
-    ),
-    (
-        57,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-01-30',
-        '2025-01-20',
-        '',
-        8.2
-    ),
-    (
-        58,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-01-31',
-        '2025-01-21',
-        '',
-        6.3
-    ),
-    (
-        59,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-02-01',
-        '2025-01-22',
-        '',
-        7.8
-    ),
-    (
-        60,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-02-02',
-        '2025-01-23',
-        '',
-        9.1
-    ),
-    (
-        61,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-02-03',
-        '2025-01-24',
-        '',
-        6.9
-    ),
-    (
-        62,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-02-04',
-        '2025-01-25',
-        '',
-        8.4
-    ),
-    (
-        63,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-02-05',
-        '2025-01-26',
-        '',
-        5.6
-    ),
-    (
-        64,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-02-06',
-        '2025-01-27',
-        '',
-        7.2
-    ),
-    (
-        65,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-02-07',
-        '2025-01-28',
-        '',
-        8.9
-    ),
-    (
-        66,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-02-08',
-        '2025-01-29',
-        '',
-        6.7
-    ),
-    (
-        67,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-02-09',
-        '2025-01-30',
-        'Paketea ura jausi da',
-        9.3
-    ),
-    (
-        68,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-02-10',
-        '2025-01-31',
-        '',
-        7.1
-    ),
-    (
-        69,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-02-11',
-        '2025-02-01',
-        '',
-        5.8
-    ),
-    (
-        70,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-02-12',
-        '2025-02-02',
-        '',
-        8.2
-    ),
-    (
-        71,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-02-13',
-        '2025-02-03',
-        '',
-        6.4
-    ),
-    (
-        72,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-02-14',
-        '2025-02-04',
-        'Paketea lekuan ez dago',
-        9.1
-    ),
-    (
-        73,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-02-15',
-        '2025-02-05',
-        '',
-        7.3
-    ),
-    (
-        74,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-02-16',
-        '2025-02-06',
-        '',
-        8.6
-    ),
-    (
-        75,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-02-17',
-        '2025-02-07',
-        '',
-        6.9
-    ),
-    (
-        76,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-02-18',
-        '2025-02-08',
-        '',
-        9.7
-    ),
-    (
-        77,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-02-19',
-        '2025-02-09',
-        '',
-        7.5
-    ),
-    (
-        78,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-02-20',
-        '2025-02-10',
-        '',
-        6.1
-    ),
-    (
-        79,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-02-21',
-        '2025-02-11',
-        'Atera gabe geratu da',
-        8.3
-    ),
-    (
-        80,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-02-22',
-        '2025-02-12',
-        '',
-        5.7
-    ),
-    (
-        81,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-02-23',
-        '2025-02-13',
-        '',
-        9.2
-    ),
-    (
-        82,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-02-24',
-        '2025-02-14',
-        '',
-        7.8
-    ),
-    (
-        83,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-02-25',
-        '2025-02-15',
-        '',
-        8.1
-    ),
-    (
-        84,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-02-26',
-        '2025-02-16',
-        '',
-        6.5
-    ),
-    (
-        85,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-02-27',
-        '2025-02-17',
-        '',
-        9.4
-    ),
-    (
-        86,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-02-28',
-        '2025-02-18',
-        '',
-        7.2
-    ),
-    (
-        87,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-03-01',
-        '2025-02-19',
-        '',
-        8.9
-    ),
-    (
-        88,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-03-02',
-        '2025-02-20',
-        '',
-        6.8
-    ),
-    (
-        89,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-03-03',
-        '2025-02-21',
-        '',
-        9.1
-    ),
-    (
-        90,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-03-04',
-        '2025-02-22',
-        'Makurtuta heldu da',
-        7.4
-    ),
-    (
-        91,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-03-05',
-        '2025-02-23',
-        '',
-        8.2
-    ),
-    (
-        92,
-        78,
-        1,
-        'Kale Zaharra 56, Bilbo',
-        '2025-03-06',
-        '2025-02-24',
-        '',
-        6.7
-    ),
-    (
-        93,
-        12,
-        3,
-        'Gernikako Arbola 8, Baiona',
-        '2025-03-07',
-        '2025-02-25',
-        '',
-        9.3
-    ),
-    (
-        94,
-        90,
-        2,
-        'Kale Nagusia 34, Iruña',
-        '2025-03-08',
-        '2025-02-26',
-        '',
-        8.1
-    ),
-    (
-        95,
-        25,
-        1,
-        'Avenida Gernika 45, Bilbo',
-        '2025-03-09',
-        '2025-02-27',
-        '',
-        7.6
-    ),
-    (
-        96,
-        67,
-        3,
-        'Errondo Etorbidea 23, Gernika',
-        '2025-03-10',
-        '2025-02-28',
-        '',
-        8.7
-    ),
-    (
-        97,
-        33,
-        2,
-        'Kale Nagusia 12, Iruña',
-        '2025-03-11',
-        '2025-03-01',
-        '',
-        6.5
-    ),
-    (
-        98,
-        89,
-        1,
-        'Herriko Plaza 5, Baiona',
-        '2025-03-12',
-        '2025-03-02',
-        '',
-        9.2
-    ),
-    (
-        99,
-        21,
-        3,
-        'Nafarroako Etorbidea 67, Gasteiz',
-        '2025-03-13',
-        '2025-03-03',
-        '',
-        7.8
-    ),
-    (
-        100,
-        45,
-        2,
-        'Nagusia Kalea 23, Donostia',
-        '2025-03-14',
-        '2025-03-04',
-        '',
-        8.9
-    ),
-    (
-        101,
-        10,
-        3,
-        'Villabona Kale Berria 3',
-        '2024-04-30',
-        '2024-05-24',
-        'Ez dago arazorik',
-        8.2
-    );
--- --------------------------------------------------------
---
--- Estructura de tabla para la tabla `pakete_egoera`
---
-CREATE TABLE `pakete_egoera` (
-    `id_Egoera` int(11) NOT NULL,
-    `id_Langileak` int(11) NOT NULL,
-    `id_Destinatzailea` int(11) NOT NULL,
-    `id_Paketea` int(11) NOT NULL,
-    `Egoera` varchar(25) NOT NULL,
-    `mezua` varchar(100) DEFAULT NULL,
-    `data_ordua` datetime(6) NOT NULL
-) ENGINE = InnoDB DEFAULT CHARSET = utf8 COLLATE = utf8_general_ci;
---
--- Volcado de datos para la tabla `pakete_egoera`
---
-INSERT INTO `pakete_egoera` (
-        `id_Egoera`,
-        `id_Langileak`,
-        `id_Destinatzailea`,
-        `id_Paketea`,
-        `Egoera`,
-        `mezua`,
+        `pisua`,
+        `egoera`,
         `data_ordua`
     )
 VALUES (
         1,
         2,
         2,
-        1,
-        'Bidean',
+        'Villabona Kale Berria 3',
+        '2024-05-29',
+        '2024-05-30',
+        'Ondoko atean utzi da',
+        19,
         NULL,
-        '2024-05-29 13:09:15.000000'
+        NULL
     ),
     (
         2,
-        1,
         3,
-        2,
-        'Entregatuta',
+        1,
+        'Iparragire bidea,3',
+        '2024-05-30',
+        '2024-05-31',
         NULL,
-        '2024-05-30 14:12:00.000000'
+        20,
+        NULL,
+        NULL
+    ),
+    (
+        4,
+        2,
+        5,
+        'Avenida Navarra 97, Vitoria-Gasteiz',
+        '2024-11-29',
+        '2024-12-09',
+        '',
+        8.15,
+        NULL,
+        NULL
+    ),
+    (
+        10,
+        2,
+        45,
+        'Herriko Plaza 7, Durango',
+        '2024-12-04',
+        '2024-12-14',
+        '',
+        7.8,
+        NULL,
+        NULL
+    ),
+    (
+        11,
+        1,
+        78,
+        'Kale Zaharra 56, Hondarribia',
+        '2024-12-05',
+        '2024-12-15',
+        'Txartela galdu da',
+        6.1,
+        NULL,
+        NULL
+    ),
+    (
+        12,
+        3,
+        12,
+        'Plaza Mayor 8, Baiona',
+        '2024-12-06',
+        '2024-12-16',
+        '',
+        8.2,
+        NULL,
+        NULL
+    ),
+    (
+        13,
+        2,
+        90,
+        'Kale Nagusia 34, Donostia',
+        '2024-12-07',
+        '2024-12-17',
+        'Paketea atzera geratu da',
+        5.5,
+        NULL,
+        NULL
+    ),
+    (
+        14,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2024-12-08',
+        '2024-12-18',
+        '',
+        9.7,
+        NULL,
+        NULL
+    ),
+    (
+        15,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2024-12-09',
+        '2024-12-19',
+        'Pisua derrigortuta dago',
+        7.4,
+        NULL,
+        NULL
+    ),
+    (
+        16,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2024-12-10',
+        '2024-12-20',
+        '',
+        6.3,
+        NULL,
+        NULL
+    ),
+    (
+        17,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2024-12-11',
+        '2024-12-21',
+        '',
+        8.9,
+        NULL,
+        NULL
+    ),
+    (
+        18,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2024-12-12',
+        '2024-12-22',
+        'Paketea lau orduko lekuan geratu da',
+        5.2,
+        NULL,
+        NULL
+    ),
+    (
+        19,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2024-12-13',
+        '2024-12-23',
+        '',
+        8.6,
+        NULL,
+        NULL
+    ),
+    (
+        20,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2024-12-14',
+        '2024-12-24',
+        '',
+        7.1,
+        NULL,
+        NULL
+    ),
+    (
+        21,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2024-12-15',
+        '2024-12-25',
+        'Ez da inzidentziarik izan',
+        6.4,
+        NULL,
+        NULL
+    ),
+    (
+        22,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2024-12-16',
+        '2024-12-26',
+        'Paketea laukotean erori da',
+        9.2,
+        NULL,
+        NULL
+    ),
+    (
+        23,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2024-12-17',
+        '2024-12-27',
+        '',
+        8.7,
+        NULL,
+        NULL
+    ),
+    (
+        24,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2024-12-18',
+        '2024-12-28',
+        '',
+        7.3,
+        NULL,
+        NULL
+    ),
+    (
+        25,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2024-12-19',
+        '2024-12-29',
+        '',
+        6.1,
+        NULL,
+        NULL
+    ),
+    (
+        26,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2024-12-20',
+        '2024-12-30',
+        '',
+        9.4,
+        NULL,
+        NULL
+    ),
+    (
+        27,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2024-12-21',
+        '2024-12-31',
+        '',
+        5.8,
+        NULL,
+        NULL
+    ),
+    (
+        28,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2024-12-22',
+        '2025-01-01',
+        'Txartela behin betiko galdu da',
+        8.3,
+        NULL,
+        NULL
+    ),
+    (
+        29,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2024-12-23',
+        '2025-01-02',
+        '',
+        6.9,
+        NULL,
+        NULL
+    ),
+    (
+        30,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2024-12-24',
+        '2025-01-03',
+        '',
+        7.2,
+        NULL,
+        NULL
+    ),
+    (
+        31,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2024-12-25',
+        '2025-01-04',
+        '',
+        8.1,
+        NULL,
+        NULL
+    ),
+    (
+        32,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2024-12-26',
+        '2025-01-05',
+        '',
+        5.7,
+        NULL,
+        NULL
+    ),
+    (
+        33,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2024-12-27',
+        '2025-01-06',
+        'Paketea hondoratuta dago',
+        9.3,
+        NULL,
+        NULL
+    ),
+    (
+        34,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2024-12-28',
+        '2025-01-07',
+        '',
+        7.6,
+        NULL,
+        NULL
+    ),
+    (
+        35,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2024-12-29',
+        '2025-01-08',
+        'Ezin izan da gurutzatu',
+        6.8,
+        NULL,
+        NULL
+    ),
+    (
+        36,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2024-12-30',
+        '2025-01-09',
+        '',
+        8.4,
+        NULL,
+        NULL
+    ),
+    (
+        37,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2024-12-31',
+        '2025-01-10',
+        '',
+        5.9,
+        NULL,
+        NULL
+    ),
+    (
+        38,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-01-01',
+        '2025-01-11',
+        '',
+        7.5,
+        NULL,
+        NULL
+    ),
+    (
+        39,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-01-02',
+        '2025-01-12',
+        '',
+        9.1,
+        NULL,
+        NULL
+    ),
+    (
+        40,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-01-03',
+        '2025-01-13',
+        '',
+        8.7,
+        NULL,
+        NULL
+    ),
+    (
+        41,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-01-04',
+        '2025-01-14',
+        'Inertzia larri bat egon da',
+        6.2,
+        NULL,
+        NULL
+    ),
+    (
+        42,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-01-05',
+        '2025-01-15',
+        '',
+        8.5,
+        NULL,
+        NULL
+    ),
+    (
+        43,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-01-06',
+        '2025-01-16',
+        '',
+        7.3,
+        NULL,
+        NULL
+    ),
+    (
+        44,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-01-07',
+        '2025-01-17',
+        '',
+        5.4,
+        NULL,
+        NULL
+    ),
+    (
+        45,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-01-08',
+        '2025-01-18',
+        '',
+        9.6,
+        NULL,
+        NULL
+    ),
+    (
+        46,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-01-09',
+        '2025-01-19',
+        '',
+        7.8,
+        NULL,
+        NULL
+    ),
+    (
+        47,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-01-10',
+        '2025-01-20',
+        '',
+        6.7,
+        NULL,
+        NULL
+    ),
+    (
+        48,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-01-11',
+        '2025-01-21',
+        '',
+        8.9,
+        NULL,
+        NULL
+    ),
+    (
+        49,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-01-12',
+        '2025-01-22',
+        '',
+        5.9,
+        NULL,
+        NULL
+    ),
+    (
+        50,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-01-13',
+        '2025-01-23',
+        '',
+        9.2,
+        NULL,
+        NULL
+    ),
+    (
+        51,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-01-14',
+        '2025-01-24',
+        '',
+        8.1,
+        NULL,
+        NULL
+    ),
+    (
+        52,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-01-15',
+        '2025-01-25',
+        '',
+        7.2,
+        NULL,
+        NULL
+    ),
+    (
+        53,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-01-16',
+        '2025-01-26',
+        'Txartela garbitu da',
+        6.5,
+        NULL,
+        NULL
+    ),
+    (
+        54,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-01-17',
+        '2025-01-27',
+        '',
+        8.7,
+        NULL,
+        NULL
+    ),
+    (
+        55,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-01-18',
+        '2025-01-28',
+        '',
+        7.3,
+        NULL,
+        NULL
+    ),
+    (
+        56,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-01-19',
+        '2025-01-29',
+        '',
+        9.4,
+        NULL,
+        NULL
+    ),
+    (
+        57,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-01-20',
+        '2025-01-30',
+        '',
+        8.2,
+        NULL,
+        NULL
+    ),
+    (
+        58,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-01-21',
+        '2025-01-31',
+        '',
+        6.3,
+        NULL,
+        NULL
+    ),
+    (
+        59,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-01-22',
+        '2025-02-01',
+        '',
+        7.8,
+        NULL,
+        NULL
+    ),
+    (
+        60,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-01-23',
+        '2025-02-02',
+        '',
+        9.1,
+        NULL,
+        NULL
+    ),
+    (
+        61,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-01-24',
+        '2025-02-03',
+        '',
+        6.9,
+        NULL,
+        NULL
+    ),
+    (
+        62,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-01-25',
+        '2025-02-04',
+        '',
+        8.4,
+        NULL,
+        NULL
+    ),
+    (
+        63,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-01-26',
+        '2025-02-05',
+        '',
+        5.6,
+        NULL,
+        NULL
+    ),
+    (
+        64,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-01-27',
+        '2025-02-06',
+        '',
+        7.2,
+        NULL,
+        NULL
+    ),
+    (
+        65,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-01-28',
+        '2025-02-07',
+        '',
+        8.9,
+        NULL,
+        NULL
+    ),
+    (
+        66,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-01-29',
+        '2025-02-08',
+        '',
+        6.7,
+        NULL,
+        NULL
+    ),
+    (
+        67,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-01-30',
+        '2025-02-09',
+        'Paketea ura jausi da',
+        9.3,
+        NULL,
+        NULL
+    ),
+    (
+        68,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-01-31',
+        '2025-02-10',
+        '',
+        7.1,
+        NULL,
+        NULL
+    ),
+    (
+        69,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-02-01',
+        '2025-02-11',
+        '',
+        5.8,
+        NULL,
+        NULL
+    ),
+    (
+        70,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-02-02',
+        '2025-02-12',
+        '',
+        8.2,
+        NULL,
+        NULL
+    ),
+    (
+        71,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-02-03',
+        '2025-02-13',
+        '',
+        6.4,
+        NULL,
+        NULL
+    ),
+    (
+        72,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-02-04',
+        '2025-02-14',
+        'Paketea lekuan ez dago',
+        9.1,
+        NULL,
+        NULL
+    ),
+    (
+        73,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-02-05',
+        '2025-02-15',
+        '',
+        7.3,
+        NULL,
+        NULL
+    ),
+    (
+        74,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-02-06',
+        '2025-02-16',
+        '',
+        8.6,
+        NULL,
+        NULL
+    ),
+    (
+        75,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-02-07',
+        '2025-02-17',
+        '',
+        6.9,
+        NULL,
+        NULL
+    ),
+    (
+        76,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-02-08',
+        '2025-02-18',
+        '',
+        9.7,
+        NULL,
+        NULL
+    ),
+    (
+        77,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-02-09',
+        '2025-02-19',
+        '',
+        7.5,
+        NULL,
+        NULL
+    ),
+    (
+        78,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-02-10',
+        '2025-02-20',
+        '',
+        6.1,
+        NULL,
+        NULL
+    ),
+    (
+        79,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-02-11',
+        '2025-02-21',
+        'Atera gabe geratu da',
+        8.3,
+        NULL,
+        NULL
+    ),
+    (
+        80,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-02-12',
+        '2025-02-22',
+        '',
+        5.7,
+        NULL,
+        NULL
+    ),
+    (
+        81,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-02-13',
+        '2025-02-23',
+        '',
+        9.2,
+        NULL,
+        NULL
+    ),
+    (
+        82,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-02-14',
+        '2025-02-24',
+        '',
+        7.8,
+        NULL,
+        NULL
+    ),
+    (
+        83,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-02-15',
+        '2025-02-25',
+        '',
+        8.1,
+        NULL,
+        NULL
+    ),
+    (
+        84,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-02-16',
+        '2025-02-26',
+        '',
+        6.5,
+        NULL,
+        NULL
+    ),
+    (
+        85,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-02-17',
+        '2025-02-27',
+        '',
+        9.4,
+        NULL,
+        NULL
+    ),
+    (
+        86,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-02-18',
+        '2025-02-28',
+        '',
+        7.2,
+        NULL,
+        NULL
+    ),
+    (
+        87,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-02-19',
+        '2025-03-01',
+        '',
+        8.9,
+        NULL,
+        NULL
+    ),
+    (
+        88,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-02-20',
+        '2025-03-02',
+        '',
+        6.8,
+        NULL,
+        NULL
+    ),
+    (
+        89,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-02-21',
+        '2025-03-03',
+        '',
+        9.1,
+        NULL,
+        NULL
+    ),
+    (
+        90,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-02-22',
+        '2025-03-04',
+        'Makurtuta heldu da',
+        7.4,
+        NULL,
+        NULL
+    ),
+    (
+        91,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-02-23',
+        '2025-03-05',
+        '',
+        8.2,
+        NULL,
+        NULL
+    ),
+    (
+        92,
+        1,
+        78,
+        'Kale Zaharra 56, Bilbo',
+        '2025-02-24',
+        '2025-03-06',
+        '',
+        6.7,
+        NULL,
+        NULL
+    ),
+    (
+        93,
+        3,
+        12,
+        'Gernikako Arbola 8, Baiona',
+        '2025-02-25',
+        '2025-03-07',
+        '',
+        9.3,
+        NULL,
+        NULL
+    ),
+    (
+        94,
+        2,
+        90,
+        'Kale Nagusia 34, Iruña',
+        '2025-02-26',
+        '2025-03-08',
+        '',
+        8.1,
+        NULL,
+        NULL
+    ),
+    (
+        95,
+        1,
+        25,
+        'Avenida Gernika 45, Bilbo',
+        '2025-02-27',
+        '2025-03-09',
+        '',
+        7.6,
+        NULL,
+        NULL
+    ),
+    (
+        96,
+        3,
+        67,
+        'Errondo Etorbidea 23, Gernika',
+        '2025-02-28',
+        '2025-03-10',
+        '',
+        8.7,
+        NULL,
+        NULL
+    ),
+    (
+        97,
+        2,
+        33,
+        'Kale Nagusia 12, Iruña',
+        '2025-03-01',
+        '2025-03-11',
+        '',
+        6.5,
+        NULL,
+        NULL
+    ),
+    (
+        98,
+        1,
+        89,
+        'Herriko Plaza 5, Baiona',
+        '2025-03-02',
+        '2025-03-12',
+        '',
+        9.2,
+        NULL,
+        NULL
+    ),
+    (
+        99,
+        3,
+        21,
+        'Nafarroako Etorbidea 67, Gasteiz',
+        '2025-03-03',
+        '2025-03-13',
+        '',
+        7.8,
+        NULL,
+        NULL
+    ),
+    (
+        100,
+        2,
+        45,
+        'Nagusia Kalea 23, Donostia',
+        '2025-03-04',
+        '2025-03-14',
+        '',
+        8.9,
+        NULL,
+        NULL
+    ),
+    (
+        101,
+        3,
+        10,
+        'Villabona Kale Berria 3',
+        '2024-05-24',
+        '2024-04-30',
+        'Ez dago arazorik',
+        8.2,
+        NULL,
+        NULL
     );
 --
 -- Índices para tablas volcadas
@@ -2115,44 +2494,32 @@ VALUES (
 ALTER TABLE `bezeroa`
 ADD PRIMARY KEY (`id_Bezeroa`);
 --
--- Indices de la tabla `langileak`
+-- Indices de la tabla `langilea`
 --
-ALTER TABLE `langileak`
-ADD PRIMARY KEY (`id_Langileak`);
+ALTER TABLE `langilea`
+ADD PRIMARY KEY (`id_Langilea`);
 --
 -- Indices de la tabla `paketea`
 --
 ALTER TABLE `paketea`
-ADD PRIMARY KEY (`id_Paketea`, `id_Langilea`, `id_Bezeroa`),
-    ADD KEY `fk_Paketea_Langileak1_idx` (`id_Langilea`),
-    ADD KEY `fk_Paketea_Destinatzailea1_idx` (`id_Bezeroa`);
---
--- Indices de la tabla `pakete_egoera`
---
-ALTER TABLE `pakete_egoera`
-ADD PRIMARY KEY (`id_Egoera`),
-    ADD KEY `fk_Pakete_Egoera_Paketea1_idx` (`id_Paketea`, `id_Langileak`, `id_Destinatzailea`);
+ADD PRIMARY KEY (`id_Paketea`),
+    ADD KEY `fk_Paketea_Langileak_idx` (`id_Langilea`),
+    ADD KEY `fk_Paketea_Bezeroa1_idx` (`id_Bezeroa`);
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 --
--- AUTO_INCREMENT de la tabla `langileak`
+-- AUTO_INCREMENT de la tabla `langilea`
 --
-ALTER TABLE `langileak`
-MODIFY `id_Langileak` int(11) NOT NULL AUTO_INCREMENT,
+ALTER TABLE `langilea`
+MODIFY `id_Langilea` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 112;
 --
 -- AUTO_INCREMENT de la tabla `paketea`
 --
 ALTER TABLE `paketea`
 MODIFY `id_Paketea` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 137;
---
--- AUTO_INCREMENT de la tabla `pakete_egoera`
---
-ALTER TABLE `pakete_egoera`
-MODIFY `id_Egoera` int(11) NOT NULL AUTO_INCREMENT,
-    AUTO_INCREMENT = 3;
+    AUTO_INCREMENT = 102;
 --
 -- Restricciones para tablas volcadas
 --
@@ -2160,13 +2527,8 @@ MODIFY `id_Egoera` int(11) NOT NULL AUTO_INCREMENT,
 -- Filtros para la tabla `paketea`
 --
 ALTER TABLE `paketea`
-ADD CONSTRAINT `fk_Paketea_Destinatzailea1` FOREIGN KEY (`id_Bezeroa`) REFERENCES `bezeroa` (`id_Bezeroa`),
-    ADD CONSTRAINT `fk_Paketea_Langileak1` FOREIGN KEY (`id_Langilea`) REFERENCES `langileak` (`id_Langileak`);
---
--- Filtros para la tabla `pakete_egoera`
---
-ALTER TABLE `pakete_egoera`
-ADD CONSTRAINT `fk_Pakete_Egoera_Paketea1` FOREIGN KEY (`id_Paketea`, `id_Langileak`, `id_Destinatzailea`) REFERENCES `paketea` (`id_Paketea`, `id_Langilea`, `id_Bezeroa`);
+ADD CONSTRAINT `fk_Paketea_Bezeroa1` FOREIGN KEY (`id_Bezeroa`) REFERENCES `bezeroa` (`id_Bezeroa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    ADD CONSTRAINT `fk_Paketea_Langileak` FOREIGN KEY (`id_Langilea`) REFERENCES `langilea` (`id_Langilea`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */
 ;

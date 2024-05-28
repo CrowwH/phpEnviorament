@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pasahitza = password_hash($_POST['pasahitza'], PASSWORD_BCRYPT);
 
         // Ziurtatu langile id-a existitzen den
-        $sql = "SELECT * FROM langileak WHERE id_Langilea = ?";
+        $sql = "SELECT * FROM langilea WHERE id_Langilea = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $id);
         $stmt->execute();
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result->num_rows > 0) {
             // Langile id-a existitzen badu taula berritu
-            $update_sql = "UPDATE langileak SET erabiltzailea = ?, pasahitza = ? WHERE id_Langilea = ?";
+            $update_sql = "UPDATE langilea SET erabiltzailea = ?, pasahitza = ? WHERE id_Langilea = ?";
             $update_stmt = $conn->prepare($update_sql);
             $update_stmt->bind_param("ssi", $erabiltzailea, $pasahitza, $id);
 
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-        $sql = "SELECT * FROM langileak WHERE erabiltzailea=?";
+        $sql = "SELECT * FROM langilea WHERE erabiltzailea=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $erabiltzailea);
         $stmt->execute();

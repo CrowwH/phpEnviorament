@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "SELECT l.nan, l.izena, l.abizena, l.erabiltzailea, l.pasahitza, l.herria, l.telefonoa, l.langile_mota
-        FROM langileak l
+        FROM langilea l
         WHERE l.erabiltzailea = '{$_SESSION['erabiltzailea']}'";
 
 $result = $conn->query($sql);

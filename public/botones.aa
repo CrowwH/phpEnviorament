@@ -1,0 +1,5 @@
+<!--<div class="btn-container">
+                <button class="btn btn-delivered">Entregatuta</button>
+                <button class="btn btn-undelivered">Ez entregatua</button>
+                <button class="btn btn-reason" onclick="openReasonModal()">Inzidentzia jarri</button>
+            </div>-->

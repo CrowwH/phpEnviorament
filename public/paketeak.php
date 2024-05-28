@@ -103,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button id="start-delivery-btn" class="btn btn-onway">Banatu</button>
             </div>
         </div>
-
         <div class="card">
             <h2>Abian dagoen Paketea</h2>
             <div id="in-progress-package">
@@ -126,11 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $stmt->close();
                 }
                 ?>
-            </div>
-            <div class="btn-container">
-                <button class="btn btn-delivered">Entregatuta</button>
-                <button class="btn btn-undelivered">Ez entregatua</button>
-                <button class="btn btn-reason" onclick="openReasonModal()">Inzidentzia jarri</button>
             </div>
         </div>
         <script>
@@ -167,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 });
             });
 
-            // Evento para el botón "Dejar de ver"
+            // Evento para el botón "Ikusteari Utzi"
             hideInfoBtn.addEventListener('click', function () {
                 packageInfoDiv.style.display = 'none';
                 currentPackageInfo = null; // Limpiar la información del paquete actual
@@ -177,27 +171,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Evento para el botón "Banatu"
             startDeliveryBtn.addEventListener('click', function () {
                 if (currentPackageInfo && currentPackageButton) {
-                    // Mover la información del paquete al div de "Abian dagoen Paketea"
-                    inProgressPackageDiv.innerHTML =
-                        '<p>Pakete ID-a: ' + currentPackageInfo.id_Paketea + '</p>' +
-                        '<p>Entregatze Helbidea: ' + currentPackageInfo.entregatze_helbidea + '</p>' +
-                        '<p>Entregatze Data: ' + currentPackageInfo.entregatze_data + '</p>';
+                    // Crear un nuevo botón con el mismo estilo y contenido que el botón original
+                    const newButton = document.createElement('button');
+                    newButton.className = currentPackageButton.className; // Copiar clase
+                    newButton.innerHTML = currentPackageButton.innerHTML; // Copiar contenido
+                    newButton.setAttribute('data-info', currentPackageButton.getAttribute('data-info')); // Copiar datos
 
-                    // Eliminar el botón del paquete de "Banatu beharreko paketeak"
+                    // Mover el nuevo botón al div de "Abian dagoen Paketea"
+                    inProgressPackageDiv.innerHTML = ''; // Limpiar el contenido anterior
+                    inProgressPackageDiv.appendChild(newButton);
+
+                    // Eliminar el botón original del div de "Banatu beharreko paketeak"
                     currentPackageButton.remove();
-
-                    // Guardar el estado en la sesión
-                    fetch('paketeak.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        },
-                        body: 'startDelivery=true&packageId=' + currentPackageInfo.id_Paketea
-                    }).then(response => response.json()).then(data => {
-                        if (data.status === 'success') {
-                            console.log('Estado guardado en la sesión.');
-                        }
-                    });
 
                     // Ocultar el div de información del paquete
                     packageInfoDiv.style.display = 'none';
@@ -234,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var xhr = new XMLHttpRequest();
             xhr.open("POST", "save_reason.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     alert("Inzidentzia jasota: " + reason);
                 }
@@ -243,4 +228,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     </script>
 </body>
+
 </html>
